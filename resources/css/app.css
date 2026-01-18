@@ -5,7 +5,68 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+/* Normal Helvetica font */
+@font-face {
+    font-family: 'Helvetica';
+    font-weight: normal;
+    font-size: normal;
+    font-display: swap;
+    src: url('../fonts/Helvetica.ttf') format('ttf');
+}
+
+/* Bold Helvetica font */
+@font-face {
+    font-family: 'Helvetica Bold';
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+    src: url('../fonts/Helvetica-Bold.ttf') format('ttf');
+}
+
+/* Rounded Bold Helvetica font */
+@font-face {
+    font-family: 'Helvetica Rounded Bold';
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+    src: url('../fonts/Helvetica-RoundedBold.otf') format('otf');
+}
+
+/* Bold Oblique Helvetica font */
+@font-face {
+    font-family: 'Helvetica Bold Oblique';
+    font-weight: bold;
+    font-style: oblique;
+    font-display: swap;
+    src: url('../fonts/Helvetica-BoldOblique.ttf') format('ttf');
+}
+
+/* Helvetica Light */
+@font-face {
+    font-family: 'Helvetica Light';
+    font-weight: lighter;
+    font-style: normal;
+    font-display: swap;
+    src: url('../fonts/Helvetica-Light.ttf') format('ttf');
+}
+
+/* Helvetica Compressed */
+@font-face {
+    font-family: 'Helvetica Compressed';
+    src: url('../fonts/Helvetica-Compressed.otf') format('ttf');
+}
+
+/* Helvetica Oblique */
+@font-face {
+    font-family: 'Helvetica Oblique';
+    font-weight: normal;
+    font-style: oblique;
+    font-display: swap;
+    src: url('../fonts/Helvetica-Oblique.ttf') format('ttf');
+}
+
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-helvetica: 'Helvetica', sans-serif;
 }

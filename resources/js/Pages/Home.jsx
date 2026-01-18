@@ -4,7 +4,7 @@ export default function Home() {
     return (
         <>
             <Actions />
-            <h1>Hello user</h1>
+            <h1 className="font-helvetica">Hello user</h1>
         </>
     );
 }
