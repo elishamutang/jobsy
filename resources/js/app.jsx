@@ -1,6 +1,7 @@
 import "./bootstrap";
 import { createInertiaApp } from "@inertiajs/react";
 import { createRoot } from "react-dom/client";
+import { renderApp } from "@inertiaui/modal-react";
 import Layout from "./Layouts/Layout";
 import "../css/app.css";
 
@@ -12,7 +13,7 @@ createInertiaApp({
         return page;
     },
     setup({ el, App, props }) {
-        createRoot(el).render(<App {...props} />);
+        createRoot(el).render(renderApp(App, props));
     },
     // Progress indicator
     progress: {
