@@ -8,12 +8,9 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Authenticated Home Page
-Route::get('/', function () {
-    return inertia('Home');
-});
+Route::get('/', [JobController::class, 'index']);
 
-// Show all jobs
+// Show job
 Route::prefix('jobs', function () {
     Route::get('/{job}', [JobController::class, 'show']);
-    Route::get('/', [JobController::class, 'index']);
 });
