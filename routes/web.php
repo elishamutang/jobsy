@@ -7,10 +7,11 @@ use Illuminate\Support\Facades\Route;
 //     return inertia('Login');
 // });
 
-// Authenticated Home Page
-Route::get('/', [JobController::class, 'index']);
-
 // Show job
-Route::prefix('jobs', function () {
+Route::prefix('jobs')->group(function () {
+    Route::get('/create', [JobController::class, 'create']);
     Route::get('/{job}', [JobController::class, 'show']);
 });
+
+// Authenticated Home Page
+Route::get('/', [JobController::class, 'index']);
