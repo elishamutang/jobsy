@@ -22,6 +22,6 @@ class DatabaseSeeder extends Seeder
             'password' => 1234,
         ]);
 
-        Job::factory(10)->for($user)->create();
+        Job::factory(20)->for($user)->create();
     }
 }
