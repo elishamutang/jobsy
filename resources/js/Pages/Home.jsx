@@ -1,32 +1,60 @@
-import { ModalLink } from "@inertiaui/modal-react";
 import Actions from "../Components/Actions";
+import { Link } from "@inertiajs/react";
 
-export default function Home() {
-    const exampleJobs = [
-        {
-            id: 1,
-            title: "Software Engineer",
-            type: "Engineering",
-            company: "Meta",
-            dateApplied: "18/01/2026",
-            closingDate: null,
-            industry: "Technology",
-            location: "Sydney, Australia",
-            locationType: "Remote",
-            currentStage: [],
-            status: "Waiting response",
-        },
-    ];
-
+export default function Home({ jobs }) {
+    console.log(jobs);
     return (
         <>
             <Actions />
 
+            <div className="flex justify-between w-full mt-7">
+                <div className="badge badge-info py-4 self-end font-bold text-white">
+                    Total jobs - {jobs.total}
+                </div>
+
+                {/* Add New Job */}
+                <Link
+                    href="/jobs/create"
+                    className="btn bg-blue-600"
+                    as="button"
+                >
+                    Add New Job
+                </Link>
+            </div>
+
             {/* List of jobs */}
-            <section className="my-10">
-                {exampleJobs.map((item, index) => {
-                    return <ModalLink key={index}>{item.title}</ModalLink>;
+            <section className="m-5 w-full h-full flex flex-col gap-3">
+                {jobs.data.map((item, index) => {
+                    return (
+                        <Link
+                            href={`/jobs/${item.id}`}
+                            className="btn btn-soft w-full text-wrap cursor-pointer"
+                            key={index}
+                        >
+                            <div className="w-full flex">
+                                <span className="text-left md:w-full truncate">
+                                    {item.title}
+                                </span>
+                            </div>
+                        </Link>
+                    );
                 })}
+
+                {/* Pagination */}
+                <div className="join self-center mt-5">
+                    {jobs.links.map((item, index) => {
+                        return (
+                            <Link
+                                href={item.url ? item.url : ""}
+                                key={index}
+                                className={`join-item btn ${item.active ? "btn-disabled" : ""}`}
+                                as="button"
+                            >
+                                {item.label}
+                            </Link>
+                        );
+                    })}
+                </div>
             </section>
         </>
     );
