@@ -1,10 +1,16 @@
+import { Form } from "@inertiajs/react";
+
 export default function Actions() {
     return (
         <>
-            <div className="flex border gap-2 py-2 px-5">
-                <div>Search</div>
-                <div>Add</div>
-            </div>
+            <Form action="/jobs" method="post" className="flex gap-2 py-2 px-5">
+                <input
+                    type="text"
+                    placeholder="Search job here"
+                    className="input"
+                />
+                <button className="btn btn-primary">Search</button>
+            </Form>
         </>
     );
 }
