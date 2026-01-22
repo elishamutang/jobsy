@@ -9,7 +9,7 @@ export default function Actions() {
                     placeholder="Search job here"
                     className="input"
                 />
-                <button className="btn btn-primary">Search</button>
+                <button className="btn bg-slate-600">Search</button>
             </Form>
         </>
     );
