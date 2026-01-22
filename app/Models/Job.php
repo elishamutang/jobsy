@@ -28,10 +28,10 @@ class Job extends Model
     protected function casts(): array
     {
         return [
-            'date_applied' => 'datetime:Y-m-d H:i:s',
-            'closing_date' => 'datetime:Y-m-d H:i:s',
-            'created_at' => 'datetime:Y-m-d H:i:s',
-            'updated_at' => 'datetime:Y-m-d H:i:s'
+            'date_applied' => 'datetime:Y-m-d',
+            'closing_date' => 'datetime:Y-m-d',
+            'created_at' => 'datetime:Y-m-d',
+            'updated_at' => 'datetime:Y-m-d'
         ];
     }
 
