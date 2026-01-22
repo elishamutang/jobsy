@@ -2,7 +2,6 @@ import Actions from "../Components/Actions";
 import { Link } from "@inertiajs/react";
 
 export default function Home({ jobs }) {
-    console.log(jobs);
     return (
         <>
             <Actions />
