@@ -8,14 +8,14 @@ export default function Home({ jobs }) {
             <Actions />
 
             <div className="flex justify-between w-full mt-7">
-                <div className="badge badge-info py-4 self-end font-bold text-white">
+                <div className="badge rounded-sm bg-slate-600 py-4 self-end font-helvetica font-semibold tracking-wide text-white">
                     Total jobs - {jobs.total}
                 </div>
 
                 {/* Add New Job */}
                 <Link
                     href="/jobs/create"
-                    className="btn bg-blue-600"
+                    className="btn bg-blue-800"
                     as="button"
                 >
                     Add New Job
