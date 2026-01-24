@@ -79,7 +79,7 @@ export default function Show({ job }) {
                         </p>
                         <p className="font-helvetica text-gray-500">
                             This posting closes on{" "}
-                            <span className="border-b border-b">
+                            <span className="border-b border-b border-b-red-500">
                                 {job.closing_date}
                             </span>
                         </p>
