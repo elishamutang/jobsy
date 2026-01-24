@@ -5,15 +5,18 @@ import { renderApp } from "@inertiaui/modal-react";
 import Layout from "./Layouts/Layout";
 import "../css/app.css";
 import ShowJobLayout from "./Layouts/ShowJobLayout";
+import CreateJobLayout from "./Layouts/CreateJobLayout";
 
 createInertiaApp({
     resolve: (name) => {
         const pages = import.meta.glob("./Pages/**/*.jsx", { eager: true });
         let page = pages[`./Pages/${name}.jsx`];
 
-        if (name !== "Home") {
+        if (name === "Jobs/Create") {
+            page.default.layout = (page) => <CreateJobLayout children={page} />;
+        } else if (name !== "Home") {
             page.default.layout = (page) => <ShowJobLayout children={page} />;
-        } else if (!page.default.layout) {
+        } else {
             page.default.layout = (page) => <Layout children={page} />;
         }
 
