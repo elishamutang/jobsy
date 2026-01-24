@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 // Show job
 Route::prefix('jobs')->group(function () {
     Route::get('/create', [JobController::class, 'create']);
+    Route::post('/create', [JobController::class, 'store']);
     Route::get('/{job}', [JobController::class, 'show']);
 });
 
