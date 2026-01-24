@@ -1,4 +1,4 @@
-1. Develop mobile-first
+~~1. Develop mobile-first.~~
 ~~2. Complete models.~~
 3. Complete routes.
 4. Complete controllers.
