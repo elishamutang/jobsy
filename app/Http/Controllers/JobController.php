@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\Job;
 use Inertia\Inertia;
+use Illuminate\Http\Client\Request;
 
 class JobController extends Controller
 {
@@ -37,6 +39,32 @@ class JobController extends Controller
     // Render job creation page
     public function create()
     {
-        return Inertia::render('Jobs/Create');
+        // Get all countries
+        $countries = Country::all()->toArray();
+
+        // Sort country names in alphabetically.
+        usort($countries, function ($a, $b) {
+            return $a['name'] <=> $b['name'];
+        });
+
+        return Inertia::render('Jobs/Create', [
+            'countries' => $countries,
+        ]);
+    }
+
+    // Store new job
+    public function store(Request $request)
+    {
+        // Validate
+        $validated = $request->validate([
+            'title' => ['required', 'max:255'],
+            'company' => ['required', 'max:255'],
+            'industry' => ['required', 'max:255'],
+            'location' => ['required', 'max:255'],
+            'locationType' => ['max:255'],
+            'status' => ['required', 'max:255'],
+            'dateApplied' => ['required', 'date'],
+            'closingDate' => ['required', 'date', 'after_or_equal:dateApplied']
+        ]);
     }
 }
