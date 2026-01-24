@@ -12,10 +12,21 @@ export default function ShowJobLayout({ children }) {
                         </Link>
                     </h1>
 
-                    {/* Edit Button */}
-                    <button className="self-end md:text-xl md:px-6 btn bg-blue-800">
-                        Edit
-                    </button>
+                    {/* Buttons */}
+                    <div className="flex gap-2">
+                        {/* Add New Job Button */}
+                        <Link
+                            href="/jobs/create"
+                            className="btn bg-green-800 md:text-xl md:px-6"
+                        >
+                            New
+                        </Link>
+
+                        {/* Edit Button */}
+                        <button className="self-end md:text-xl md:px-6 btn bg-blue-800">
+                            Edit
+                        </button>
+                    </div>
                 </section>
 
                 <div className="divider my-1"></div>
