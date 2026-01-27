@@ -14,7 +14,7 @@ createInertiaApp({
 
         if (name === "Jobs/Create") {
             page.default.layout = (page) => <CreateJobLayout children={page} />;
-        } else if (name !== "Home") {
+        } else if (name === "Jobs/Show") {
             page.default.layout = (page) => <ShowJobLayout children={page} />;
         } else {
             page.default.layout = (page) => <Layout children={page} />;
