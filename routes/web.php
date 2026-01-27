@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/login', function () {
-//     return inertia('Login');
-// });
+// Authentication routes
+Route::get('/register', [AuthController::class, 'register']);
+Route::get('/login', [AuthController::class, 'index']);
+Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
+
 
 // Show job
 Route::prefix('jobs')->group(function () {
