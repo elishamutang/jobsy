@@ -4,6 +4,7 @@ import { Link } from "@inertiajs/react";
 export default function Home({ jobs }) {
     return (
         <>
+            {/* TODO(elishamutang): Complete search bar functionality. */}
             <Actions />
 
             <div className="flex justify-between w-full mt-7">
