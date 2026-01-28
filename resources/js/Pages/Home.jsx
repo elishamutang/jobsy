@@ -1,61 +1,30 @@
-import Actions from "../Components/Actions";
 import { Link } from "@inertiajs/react";
 
-export default function Home({ jobs }) {
+export default function Home() {
     return (
         <>
-            {/* TODO(elishamutang): Complete search bar functionality. */}
-            <Actions />
-
-            <div className="flex justify-between w-full mt-7">
-                <div className="badge rounded-sm bg-slate-600 py-4 self-end font-helvetica font-semibold tracking-wide text-white">
-                    Total jobs - {jobs.total}
-                </div>
-
-                {/* Add New Job */}
-                <Link
-                    href="/jobs/create"
-                    className="btn bg-blue-800"
-                    as="button"
-                >
-                    Add New Job
-                </Link>
-            </div>
-
-            {/* List of jobs */}
-            <section className="m-5 w-full h-full flex flex-col gap-3">
-                {jobs.data.map((item, index) => {
-                    return (
-                        <Link
-                            href={`/jobs/${item.id}`}
-                            className="btn btn-soft w-full text-wrap cursor-pointer"
-                            key={index}
-                        >
-                            <div className="w-full flex">
-                                <span className="text-left md:w-full truncate">
-                                    {item.title}
-                                </span>
-                            </div>
+            <main className="mx-auto m-0 flex justify-center flex-col items-center border-zinc-500 h-screen">
+                <section className="p-2 flex flex-col items-center">
+                    <h1 className="text-7xl font-bold mb-3 font-helvetica tracking-tight">
+                        <Link href="/jobs">
+                            <span className="text-9xl">J</span>obsy
+                            <span className="text-blue-600">.</span>
                         </Link>
-                    );
-                })}
+                    </h1>
 
-                {/* Pagination */}
-                <div className="join self-center mt-5">
-                    {jobs.links.map((item, index) => {
-                        return (
-                            <Link
-                                href={item.url ? item.url : ""}
-                                key={index}
-                                className={`join-item btn ${item.active ? "btn-disabled" : ""}`}
-                                as="button"
-                            >
-                                {item.label}
-                            </Link>
-                        );
-                    })}
-                </div>
-            </section>
+                    <p className="font-helvetica text-center text-zinc-500 mb-5">
+                        Keep track of the jobs you've applied for. Anywhere,
+                        anytime!
+                    </p>
+
+                    {/* Login or Sign Up buttons */}
+                    <div className="w-full flex justify-center">
+                        <Link href="/login" className="btn bg-blue-800 w-1/2">
+                            Login
+                        </Link>
+                    </div>
+                </section>
+            </main>
         </>
     );
 }
