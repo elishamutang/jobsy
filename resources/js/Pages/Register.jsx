@@ -10,32 +10,41 @@ export default function Register() {
                 className="flex flex-col items-center w-8/9"
             >
                 <div className="w-full flex flex-col my-2">
+                    {/* User's name */}
+                    <label htmlFor="name">Name</label>
+                    <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        className="input w-full mt-2 mb-3"
+                    />
+
                     {/* User email */}
-                    <label htmlFor="userEmail">Email</label>
+                    <label htmlFor="email">Email</label>
                     <input
                         type="email"
-                        name="userEmail"
-                        id="userEmail"
+                        name="email"
+                        id="email"
                         className="input w-full mt-2 mb-3"
                     />
 
                     {/* User password */}
-                    <label htmlFor="userPassword">Password</label>
+                    <label htmlFor="password">Password</label>
                     <input
                         type="password"
-                        name="userPassword"
-                        id="userPassword"
+                        name="password"
+                        id="password"
                         className="input w-full mt-2 mb-3"
                     />
 
                     {/* Confirm password */}
-                    <label htmlFor="userPasswordConfirmation">
+                    <label htmlFor="password_confirmation">
                         Confirm Password
                     </label>
                     <input
                         type="password"
-                        name="userPasswordConfirmation"
-                        id="userPasswordConfirmation"
+                        name="password_confirmation"
+                        id="password_confirmation"
                         className="input w-full mt-2 mb-3"
                     />
                 </div>

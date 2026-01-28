@@ -1,0 +1,72 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
+
+class AuthController extends Controller
+{
+    // Index
+    public function index()
+    {
+        return Inertia::render('Login');
+    }
+
+
+    // Login method
+    public function login(Request $request)
+    {
+        $userCreds = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required']
+        ]);
+
+        if (Auth::attempt($userCreds)) {
+            $request->session()->regenerate();
+            return to_route('home');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.'
+        ])->onlyInput('email');
+    }
+
+    // Logout method
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return to_route('index');
+    }
+
+    // Show registration page
+    public function register()
+    {
+        return Inertia::render('Register');
+    }
+
+    // Store new user
+    public function store(Request $request)
+    {
+        $userCreds = $request->validate([
+            'name' => ['required', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'password' => ['required', 'confirmed', 'max:255']
+        ]);
+
+        // Create user in DB
+        $user = User::create($userCreds);
+
+        // Authenticate user
+        Auth::login($user);
+        $request->session()->regenerate();
+
+        return to_route('home');
+    }
+}
