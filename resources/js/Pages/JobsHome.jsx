@@ -1,7 +1,7 @@
 import Actions from "../Components/Actions";
 import { Link } from "@inertiajs/react";
 
-export default function Home({ jobs }) {
+export default function JobsHome({ jobs }) {
     return (
         <>
             {/* TODO(elishamutang): Complete search bar functionality. */}

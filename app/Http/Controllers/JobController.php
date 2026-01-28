@@ -12,7 +12,7 @@ class JobController extends Controller
     // Return all jobs
     public function index()
     {
-        $jobs = Job::paginate(10);
+        $jobs = Job::latest()->paginate(10);
 
         // Modify the "Previous" and "Next" button text
         $paginatedData = $jobs->toArray();
@@ -23,7 +23,7 @@ class JobController extends Controller
         $paginatedData['links'][$lastIdx]['label'] = 'Next';
 
         // Get all jobs
-        return Inertia::render('Home', [
+        return Inertia::render('JobsHome', [
             'jobs' => $paginatedData,
         ]);
     }
@@ -66,5 +66,9 @@ class JobController extends Controller
             'dateApplied' => ['required', 'date'],
             'closingDate' => ['required', 'date', 'after_or_equal:dateApplied']
         ]);
+
+        // Create job through the currently authenticated user
+
+
     }
 }
