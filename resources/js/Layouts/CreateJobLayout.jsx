@@ -1,6 +1,8 @@
 import { Link } from "@inertiajs/react";
 
 export default function CreateJobLayout({ children }) {
+    const currentYear = new Date().getFullYear();
+
     return (
         <>
             <main className="mx-auto my-3 flex justify-center flex-col items-center md:w-1/2 md:border rounded-md p-5">
@@ -24,6 +26,10 @@ export default function CreateJobLayout({ children }) {
                 <div className="divider my-1"></div>
 
                 {children}
+
+                <footer className="font-helvetica tracking-wide text-sm text-zinc-500 mt-6">
+                    &copy; {currentYear} Jobsy - All Rights Reserved
+                </footer>
             </main>
         </>
     );
