@@ -1,6 +1,5 @@
 import { Form } from "@inertiajs/react";
 import { usePage } from "@inertiajs/react";
-import { useState } from "react";
 
 export default function CreateJob({ countries }) {
     const { errors } = usePage().props;
