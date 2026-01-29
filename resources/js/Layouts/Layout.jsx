@@ -5,7 +5,7 @@ export default function Layout({ children }) {
 
     return (
         <>
-            <main className="mx-auto my-3 flex justify-center flex-col items-center md:border border-zinc-700 w-full sm:w-xl md:w-2xl pt-5 px-5 md:px-10">
+            <main className="mx-auto mb-3 flex justify-center flex-col items-center w-full sm:w-xl md:w-2xl pt-5 px-5 md:px-10">
                 <section className="flex flex-col items-center">
                     <h1 className="text-5xl md:text-6xl font-bold mb-2 font-helvetica tracking-tight">
                         <Link href="/jobs">
@@ -13,14 +13,14 @@ export default function Layout({ children }) {
                             <span className="text-blue-600">.</span>
                         </Link>
                     </h1>
-                    <p className="font-helvetica tracking-wide text-center text-zinc-500 mb-5 text-sm w-4/5">
+                    <p className="font-helvetica tracking-wide text-center text-zinc-500 mb-3 text-sm w-4/5">
                         Keep track of the jobs you've applied for. Anywhere,
                         anytime!
                     </p>
                 </section>
                 {children}
 
-                <footer className="font-helvetica tracking-wide text-sm text-zinc-500 mt-2 mb-5">
+                <footer className="font-helvetica tracking-wide text-sm text-zinc-500 mt-5 mb-5">
                     &copy; {currentYear} Jobsy - All Rights Reserved
                 </footer>
             </main>
