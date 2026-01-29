@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Illuminate\Auth\Events\Registered;
 
 class AuthController extends Controller
 {
@@ -62,6 +63,8 @@ class AuthController extends Controller
 
         // Create user in DB
         $user = User::create($userCreds);
+
+        event(new Registered($user));
 
         // Authenticate user
         Auth::login($user);
