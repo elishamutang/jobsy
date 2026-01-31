@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -27,13 +28,17 @@ Route::get('/login', [AuthController::class, 'index'])->middleware('guest');
 Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
-// To be protected routes
+// Protected routes
 Route::prefix('jobs')->middleware(['auth', 'verified'])->group(function () {
+
+    // Jobs
     Route::get('/create', [JobController::class, 'create']);
     Route::post('/create', [JobController::class, 'store']);
-
     Route::get('/{job}', [JobController::class, 'show']);
 
     // Authenticated home page
     Route::get('/', [JobController::class, 'index'])->name('home');
 });
+
+// User profile
+Route::middleware(['auth', 'verified'])->get('/profile', [ProfileController::class, 'index']);
