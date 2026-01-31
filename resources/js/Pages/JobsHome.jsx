@@ -15,7 +15,7 @@ export default function JobsHome({ jobs }) {
                 {/* Add New Job */}
                 <Link
                     href="/jobs/create"
-                    className="btn bg-blue-900"
+                    className="btn bg-blue-900 font-helvetica font-semibold"
                     as="button"
                 >
                     Add New Job
