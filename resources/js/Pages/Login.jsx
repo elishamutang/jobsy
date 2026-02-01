@@ -38,7 +38,7 @@ export default function Login() {
                 {/* Register new account */}
                 <Link
                     href="/register"
-                    className="btn text-blue-800 tracking-wide font-semibold bg-blue-300 w-full mt-4 font-helvetica"
+                    className="btn tracking-wide font-semibold bg-blue-500 w-full mt-4 font-helvetica"
                 >
                     Create new account
                 </Link>
