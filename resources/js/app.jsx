@@ -7,6 +7,7 @@ import "../css/app.css";
 import ShowJobLayout from "./Layouts/ShowJobLayout";
 import CreateJobLayout from "./Layouts/CreateJobLayout";
 import LoginOrRegisterLayout from "./Layouts/LoginOrRegisterLayout";
+import EditJobLayout from "./Layouts/EditJobLayout";
 
 createInertiaApp({
     resolve: (name) => {
@@ -21,6 +22,8 @@ createInertiaApp({
             page.default.layout = (page) => (
                 <LoginOrRegisterLayout children={page} />
             );
+        } else if (name === "Jobs/Edit") {
+            page.default.layout = (page) => <EditJobLayout children={page} />;
         } else if (name !== "Landing") {
             page.default.layout = (page) => <Layout children={page} />;
         }
