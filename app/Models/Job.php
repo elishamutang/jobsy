@@ -25,6 +25,7 @@ class Job extends Model
         'location_type',
         'current_stage',
         'status',
+        'location'
     ];
 
     protected function casts(): array
