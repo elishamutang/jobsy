@@ -16,6 +16,7 @@ class ProfileController extends Controller
     {
         return Inertia::render('Profile', [
             'user' => Auth::user(),
+            'showLogout' => true,
         ]);
     }
 
