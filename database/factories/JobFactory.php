@@ -17,21 +17,20 @@ class JobFactory extends Factory
      */
     public function definition(): array
     {
-
-        // Get all countries
-        $countries = Country::all();
+        // Get country
+        $country = Country::inRandomOrder()->first();
 
         return [
             'title' => fake()->jobTitle(),
-            'type' => fake()->randomElement(['Full-time', 'Part-time', 'Casual']),
+            'type' => fake()->randomElement(['Full-time', 'Part-time', 'Casual', 'Contractor']),
             'company' => fake()->company(),
             'date_applied' => fake()->dateTimeThisYear(),
             'closing_date' => fake()->dateTimeThisYear(),
-            'industry' => fake()->randomElement(['Services', 'Agriculture', 'Retail', 'Manufacturing', 'Construction', 'Government', 'Healthcare', 'Commercial Real Estate', 'Mining', 'Engineering', 'Education', 'Construction']),
-            'location' => $countries->random()->id,
+            'industry' => fake()->randomElement(['services', 'agriculture', 'Retail', 'Manufacturing', 'Construction', 'Government', 'Healthcare', 'Commercial Real Estate', 'Mining', 'Engineering', 'Education', 'Construction']),
+            'location' => $country->id,
             'location_type' => fake()->randomElement(['On-site', 'Hybrid', 'Remote']),
             'current_stage' => fake()->randomElement(['Stage 1', 'Stage 2', 'Stage 3', 'Stage 4']),
-            'status' => fake()->randomElement(['Offer', 'Pending', 'Rejected', 'Ghosted']),
+            'status' => fake()->randomElement(['Offer', 'Pending', 'Rejected', 'Ghosted', 'Interview']),
         ];
     }
 }

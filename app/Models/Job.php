@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Enums\JobLocationType;
+use App\Enums\JobStatus;
+use App\Enums\JobType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -30,7 +33,10 @@ class Job extends Model
             'date_applied' => 'datetime:Y-m-d',
             'closing_date' => 'datetime:Y-m-d',
             'created_at' => 'datetime:Y-m-d',
-            'updated_at' => 'datetime:Y-m-d'
+            'updated_at' => 'datetime:Y-m-d',
+            'type' => JobType::class,
+            'status' => JobStatus::class,
+            'location_type' => JobLocationType::class,
         ];
     }
 
