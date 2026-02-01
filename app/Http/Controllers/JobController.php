@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\JobLocationType;
+use App\Enums\JobStatus;
+use App\Enums\JobType;
 use App\Models\Country;
 use App\Models\Job;
 use Inertia\Inertia;
 use Illuminate\Http\Client\Request;
+use Illuminate\Validation\Rule;
 
 class JobController extends Controller
 {
@@ -61,10 +65,11 @@ class JobController extends Controller
             'company' => ['required', 'max:255'],
             'industry' => ['required', 'max:255'],
             'location' => ['required', 'max:255'],
-            'locationType' => ['max:255'],
-            'status' => ['required', 'max:255'],
+            'locationType' => ['max:255', Rule::enum(JobLocationType::class)],
+            'status' => ['required', 'max:255', Rule::enum(JobStatus::class)],
             'dateApplied' => ['required', 'date'],
-            'closingDate' => ['required', 'date', 'after_or_equal:dateApplied']
+            'closingDate' => ['required', 'date', 'after_or_equal:dateApplied'],
+            'type' => ['required', Rule::enum(JobType::class)]
         ]);
 
         // Create job through the currently authenticated user
