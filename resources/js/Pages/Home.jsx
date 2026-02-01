@@ -1,13 +1,9 @@
 import Actions from "../Components/Actions";
 import { Link } from "@inertiajs/react";
-import toast, { Toaster } from "react-hot-toast";
 
 export default function Home({ jobs }) {
     return (
         <>
-            {/* Toast messages */}
-            <Toaster />
-
             {/* TODO(elishamutang): Complete search bar functionality. */}
             <Actions />
 

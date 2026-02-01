@@ -1,13 +1,24 @@
 import { Link, usePage } from "@inertiajs/react";
 import ProfileIcon from "../Components/ProfileIcon";
+import toast, { Toaster } from "react-hot-toast";
+import { useEffect } from "react";
 
 export default function Layout({ children }) {
     const currentYear = new Date().getFullYear();
-    const { user, showLogout } = usePage().props;
+    const { user, showLogout, success } = usePage().props;
+
+    useEffect(() => {
+        if (success?.message) {
+            console.log(success.message);
+            toast.success(success.message);
+        }
+    }, [success]);
 
     return (
         <>
             <main className="mx-auto mb-3 flex justify-center flex-col items-center w-full sm:w-xl md:w-2xl pt-5 px-5 md:px-10">
+                {/* Toast messages */}
+                <Toaster />
                 <section className="flex flex-col items-center w-full">
                     {/* Profile icon */}
                     {user.name && (
