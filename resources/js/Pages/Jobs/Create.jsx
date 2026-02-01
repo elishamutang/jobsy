@@ -77,6 +77,29 @@ export default function CreateJob({ countries }) {
                     )}
                 </div>
 
+                {/* Type */}
+                <div>
+                    <h1 className="font-helvetica font-semibold text-2xl">
+                        Type
+                    </h1>
+                    <select
+                        name="type"
+                        className="select my-2 w-full"
+                        defaultValue="FULL_TIME"
+                        required
+                    >
+                        <option value="FULL_TIME">Full-time</option>
+                        <option value="PART_TIME">Part-time</option>
+                        <option value="CASUAL">Casual</option>
+                        <option value="CONTRACTOR">Contractor</option>
+                    </select>
+                    {errors.type && (
+                        <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
+                            {errors.type}
+                        </div>
+                    )}
+                </div>
+
                 {/* Location */}
                 <div>
                     <h1 className="font-helvetica font-semibold text-2xl">
@@ -118,11 +141,11 @@ export default function CreateJob({ countries }) {
                     <select
                         name="locationType"
                         className="select my-2 w-full"
-                        defaultValue="onsite"
+                        defaultValue="ON_SITE"
                     >
-                        <option value="onsite">On-Site</option>
-                        <option value="hybrid">Hybrid</option>
-                        <option value="remote">Remote</option>
+                        <option value="ON_SITE">On-Site</option>
+                        <option value="HYBRID">Hybrid</option>
+                        <option value="REMOTE">Remote</option>
                     </select>
                     {errors.locationType && (
                         <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
@@ -139,14 +162,13 @@ export default function CreateJob({ countries }) {
                     <select
                         name="status"
                         className="select my-2 w-full"
-                        defaultValue="waiting"
-                        required
+                        defaultValue="PENDING"
                     >
-                        <option value="waiting">Waiting response</option>
-                        <option value="interview">Interview</option>
-                        <option value="offer">Offer</option>
-                        <option value="rejected">Rejected</option>
-                        <option value="ghosted">Ghosted</option>
+                        <option value="PENDING">Pending</option>
+                        <option value="INTERVIEW">Interview</option>
+                        <option value="OFFER">Offer</option>
+                        <option value="REJECTED">Rejected</option>
+                        <option value="GHOSTED">Ghosted</option>
                     </select>
                     {errors.status && (
                         <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
