@@ -26,7 +26,7 @@ Route::prefix('email')->group(function () {
 // User Login & Logout
 Route::get('/login', [AuthController::class, 'index'])->middleware('guest');
 Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
+Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 // Protected routes
 Route::prefix('jobs')->middleware(['auth', 'verified'])->group(function () {
