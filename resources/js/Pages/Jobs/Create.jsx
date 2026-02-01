@@ -100,7 +100,7 @@ export default function CreateJob({ countries }) {
                     )}
                 </div>
 
-                {/* Location */}
+                {/* Countries */}
                 <div>
                     <h1 className="font-helvetica font-semibold text-2xl">
                         Location
