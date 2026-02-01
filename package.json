@@ -20,6 +20,7 @@
         "@inertiajs/react": "^2.3.8",
         "@inertiaui/modal-react": "file:vendor/inertiaui/modal/react",
         "react": "^19.2.3",
-        "react-dom": "^19.2.3"
+        "react-dom": "^19.2.3",
+        "react-hot-toast": "^2.6.0"
     }
 }
