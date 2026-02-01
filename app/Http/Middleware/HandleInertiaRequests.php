@@ -46,6 +46,9 @@ class HandleInertiaRequests extends Middleware
                 ];
             },
             'showLogout' => fn() => $request->session()->get('showLogout'),
+            'success' => [
+                'message' => fn() => $request->session()->get('success'),
+            ],
         ]);
     }
 }
