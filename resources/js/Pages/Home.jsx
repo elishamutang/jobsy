@@ -33,7 +33,9 @@ export default function Home({ jobs }) {
                             key={index}
                         >
                             <div className="w-full flex justify-between">
-                                <span className="text-left md:w-full truncate w-4/5">
+                                <span
+                                    className={`text-left md:w-full truncate w-4/5 ${item.status !== "Rejected" && item.status !== "Ghosted" ? "" : "line-through text-zinc-500"}`}
+                                >
                                     {item.title}
                                 </span>
                                 <div className="w-10">
