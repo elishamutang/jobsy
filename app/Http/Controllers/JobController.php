@@ -8,7 +8,7 @@ use App\Enums\JobType;
 use App\Models\Country;
 use App\Models\Job;
 use Inertia\Inertia;
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class JobController extends Controller
@@ -61,10 +61,10 @@ class JobController extends Controller
     {
         // Validate
         $validated = $request->validate([
-            'title' => ['required', 'max:255'],
-            'company' => ['required', 'max:255'],
-            'industry' => ['required', 'max:255'],
-            'location' => ['required', 'max:255'],
+            'title' => ['required', 'string', 'max:255'],
+            'company' => ['required', 'string', 'max:255'],
+            'industry' => ['required', 'string', 'max:255'],
+            'location' => ['required', 'integer', 'max:255'],
             'locationType' => ['max:255', Rule::enum(JobLocationType::class)],
             'status' => ['required', 'max:255', Rule::enum(JobStatus::class)],
             'dateApplied' => ['required', 'date'],
@@ -77,7 +77,7 @@ class JobController extends Controller
 
     }
 
-    // Update job
+    // Render edit page
     public function edit(Job $job)
     {
         // Get all countries
@@ -92,5 +92,27 @@ class JobController extends Controller
             'job' => $job->load('country'),
             'countries' => $countries,
         ])->with('jobId', $job->id);
+    }
+
+    // Store updated job
+    public function update(Request $request, Job $job)
+    {
+        // Validate
+        $validated = $request->validate([
+            'title' => ['string', 'max:255'],
+            'company' => ['string', 'max:255'],
+            'industry' => ['string', 'max:255'],
+            'location' => ['integer'],
+            'locationType' => ['string', Rule::enum(JobLocationType::class)],
+            'status' => ['string', Rule::enum(JobStatus::class)],
+            'dateApplied' => ['date'],
+            'closingDate' => ['date', 'after_or_equal:dateApplied'],
+            'type' => ['string', Rule::enum(JobType::class)]
+        ]);
+
+        // Update job
+        $job->update($validated);
+
+        return to_route('jobs.show', $job)->with('success', 'Job updated!');
     }
 }
