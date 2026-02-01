@@ -45,6 +45,7 @@ class HandleInertiaRequests extends Middleware
                     'name' => $request->user() ? $request->user()->name : null,
                 ];
             },
+            'showLogout' => fn() => $request->session()->get('showLogout'),
         ]);
     }
 }
