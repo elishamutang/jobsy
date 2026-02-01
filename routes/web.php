@@ -9,7 +9,7 @@ use Inertia\Inertia;
 
 // Authenticated Home Page
 Route::get('/', function () {
-    return Inertia::render('Home');
+    return Inertia::render('Landing');
 })->name('index')->middleware('guest');
 
 // User Registration

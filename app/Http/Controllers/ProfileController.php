@@ -37,7 +37,7 @@ class ProfileController extends Controller
         $user = Auth::user();
         $user->update($validated);
 
-        return to_route('JobsHome')->with('success', 'Profile updated');
+        return to_route('Home')->with('success', 'Profile updated');
     }
 
     // Delete user profile

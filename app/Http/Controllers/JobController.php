@@ -23,7 +23,7 @@ class JobController extends Controller
         $paginatedData['links'][$lastIdx]['label'] = 'Next';
 
         // Get all jobs
-        return Inertia::render('JobsHome', [
+        return Inertia::render('Home', [
             'jobs' => $paginatedData,
         ]);
     }

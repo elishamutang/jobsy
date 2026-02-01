@@ -21,7 +21,7 @@ createInertiaApp({
             page.default.layout = (page) => (
                 <LoginOrRegisterLayout children={page} />
             );
-        } else if (name !== "Home") {
+        } else if (name !== "Landing") {
             page.default.layout = (page) => <Layout children={page} />;
         }
 
