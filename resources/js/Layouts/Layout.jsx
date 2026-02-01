@@ -25,7 +25,7 @@ export default function Layout({ children }) {
                 </section>
                 {children}
 
-                <footer className="font-helvetica tracking-wide text-sm text-zinc-500 mt-5 mb-5">
+                <footer className="font-helvetica tracking-wide text-sm text-zinc-500 mt-5">
                     &copy; {currentYear} Jobsy - All Rights Reserved
                 </footer>
             </main>
