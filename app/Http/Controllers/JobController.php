@@ -16,7 +16,7 @@ class JobController extends Controller
     // Return all jobs
     public function index()
     {
-        $jobs = Job::latest()->paginate(10);
+        $jobs = Job::with('country')->latest()->paginate(10);
 
         // Modify the "Previous" and "Next" button text
         $paginatedData = $jobs->toArray();

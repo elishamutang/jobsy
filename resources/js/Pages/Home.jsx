@@ -2,12 +2,13 @@ import Actions from "../Components/Actions";
 import { Link } from "@inertiajs/react";
 
 export default function Home({ jobs }) {
+    console.log(jobs);
     return (
         <>
             {/* TODO(elishamutang): Complete search bar functionality. */}
             <Actions />
 
-            <div className="flex justify-between w-full mt-7">
+            <div className="flex justify-between w-full mt-3">
                 <div className="btn rounded-sm bg-slate-800 py-4 self-end font-helvetica font-semibold tracking-wide text-white">
                     Total jobs - {jobs.total}
                 </div>
@@ -31,10 +32,17 @@ export default function Home({ jobs }) {
                             className="btn btn-soft w-full text-wrap cursor-pointer"
                             key={index}
                         >
-                            <div className="w-full flex">
-                                <span className="text-left md:w-full truncate">
+                            <div className="w-full flex justify-between">
+                                <span className="text-left md:w-full truncate w-4/5">
                                     {item.title}
                                 </span>
+                                <div className="w-10">
+                                    <img
+                                        className="w-full"
+                                        src={item.country.flag}
+                                        alt={`${item.name} flag`}
+                                    />
+                                </div>
                             </div>
                         </Link>
                     );
