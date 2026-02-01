@@ -49,6 +49,7 @@ class HandleInertiaRequests extends Middleware
             'success' => [
                 'message' => fn() => $request->session()->get('success'),
             ],
+            'jobId' => fn() => $request->session()->get('jobId'),
         ]);
     }
 }
