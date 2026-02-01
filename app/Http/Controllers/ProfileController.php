@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\Rules\Password;
 
 class ProfileController extends Controller
 {
@@ -29,16 +29,19 @@ class ProfileController extends Controller
             'password' => ['nullable', 'confirmed', Password::min(6), 'max:255']
         ]);
 
+        // Update authenticated user
+        $user = Auth::user();
+
         // Handle password separately to avoid hashing empty values
         if (isset($validated['password'])) {
             $validated['password'] = Hash::make($request->password);
+        } else {
+            $validated['password'] = $user->password;
         }
 
-        // Update authenticated user
-        $user = Auth::user();
         $user->update($validated);
 
-        return to_route('Home')->with('success', 'Profile updated');
+        return to_route('home')->with('success', 'Profile updated!');
     }
 
     // Delete user profile
