@@ -85,13 +85,13 @@ export default function CreateJob({ countries }) {
                     <select
                         name="type"
                         className="select my-2 w-full"
-                        defaultValue="FULL_TIME"
+                        defaultValue="Full-time"
                         required
                     >
-                        <option value="FULL_TIME">Full-time</option>
-                        <option value="PART_TIME">Part-time</option>
-                        <option value="CASUAL">Casual</option>
-                        <option value="CONTRACTOR">Contractor</option>
+                        <option value="Full-time">Full-time</option>
+                        <option value="Part-time">Part-time</option>
+                        <option value="Casual">Casual</option>
+                        <option value="Contractor">Contractor</option>
                     </select>
                     {errors.type && (
                         <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
@@ -141,11 +141,11 @@ export default function CreateJob({ countries }) {
                     <select
                         name="locationType"
                         className="select my-2 w-full"
-                        defaultValue="ON_SITE"
+                        defaultValue="On-site"
                     >
-                        <option value="ON_SITE">On-Site</option>
-                        <option value="HYBRID">Hybrid</option>
-                        <option value="REMOTE">Remote</option>
+                        <option value="On-site">On-Site</option>
+                        <option value="Hybrid">Hybrid</option>
+                        <option value="Remote">Remote</option>
                     </select>
                     {errors.locationType && (
                         <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
@@ -162,13 +162,13 @@ export default function CreateJob({ countries }) {
                     <select
                         name="status"
                         className="select my-2 w-full"
-                        defaultValue="PENDING"
+                        defaultValue="Pending"
                     >
-                        <option value="PENDING">Pending</option>
-                        <option value="INTERVIEW">Interview</option>
-                        <option value="OFFER">Offer</option>
-                        <option value="REJECTED">Rejected</option>
-                        <option value="GHOSTED">Ghosted</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Interview">Interview</option>
+                        <option value="Offer">Offer</option>
+                        <option value="Rejected">Rejected</option>
+                        <option value="Ghosted">Ghosted</option>
                     </select>
                     {errors.status && (
                         <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
