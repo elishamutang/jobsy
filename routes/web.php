@@ -33,10 +33,10 @@ Route::prefix('jobs')->middleware(['auth', 'verified'])->group(function () {
 
     // Jobs
     Route::get('/edit/{job}', [JobController::class, 'edit']);
-    Route::patch('/edit', [JobController::class, 'update']);
+    Route::put('/edit/{job}', [JobController::class, 'update']);
     Route::get('/create', [JobController::class, 'create']);
     Route::post('/create', [JobController::class, 'store']);
-    Route::get('/{job}', [JobController::class, 'show']);
+    Route::get('/{job}', [JobController::class, 'show'])->name('jobs.show');
 
     // Authenticated home page
     Route::get('/', [JobController::class, 'index'])->name('home');
