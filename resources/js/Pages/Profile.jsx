@@ -8,6 +8,8 @@ export default function Profile({ user }) {
         <>
             <section className="w-full flex flex-col gap-7">
                 <Form
+                    action="/profile"
+                    method="post"
                     className="inert:opacity-50 inert:pointer-events-none self-start w-full flex flex-col gap-3"
                     disableWhileProcessing
                     resetOnSuccess
@@ -61,7 +63,6 @@ export default function Profile({ user }) {
                             type="password"
                             name="password"
                             className="input my-2 py-5 text-md w-full"
-                            required
                         />
                         {errors.password && (
                             <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
@@ -79,7 +80,6 @@ export default function Profile({ user }) {
                             type="password"
                             name="password_confirmation"
                             className="input my-2 py-5 text-md w-full"
-                            required
                         />
                         {errors.password_confirmation && (
                             <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
@@ -88,16 +88,17 @@ export default function Profile({ user }) {
                         )}
                     </div>
 
+                    {/* Submit or Cancel buttons */}
                     <div className="flex justify-between gap-4 w-full">
                         <button
                             type="submit"
-                            className="flex-1 btn bg-green-800 font-helvetica tracking-wide text-lg"
+                            className="flex-1 btn bg-blue-800 font-helvetica tracking-wide text-lg"
                         >
                             Update
                         </button>
                         <Link
                             href="/"
-                            className="flex-1 btn bg-red-800 font-helvetica tracking-wide text-lg"
+                            className="flex-1 btn bg-slate-600 font-helvetica tracking-wide text-lg"
                         >
                             Cancel
                         </Link>
@@ -110,6 +111,7 @@ export default function Profile({ user }) {
                         Danger Zone
                     </h1>
 
+                    {/* TODO(elishamutang): Add action and method properties */}
                     <Form className="flex flex-col gap-2 border border-red-500 bg-red-900 p-2 rounded-md">
                         <div className="flex flex-col gap-1 mb-2">
                             <h2 className="font-helvetica font-semibold">

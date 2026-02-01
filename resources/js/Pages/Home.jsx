@@ -8,7 +8,7 @@ export default function Home({ jobs }) {
             <Actions />
 
             <div className="flex justify-between w-full mt-7">
-                <div className="btn rounded-sm bg-zinc-900 py-4 self-end font-helvetica font-semibold tracking-wide text-white">
+                <div className="btn rounded-sm bg-slate-800 py-4 self-end font-helvetica font-semibold tracking-wide text-white">
                     Total jobs - {jobs.total}
                 </div>
 

@@ -6,7 +6,7 @@ export default function ProfileIcon({ user, showLogout }) {
             {user && (
                 <Link
                     href="/profile"
-                    className="self-end bg-zinc-900 btn btn-circle text-xl absolute font-helvetica font-bold"
+                    className="self-end bg-blue-800 btn btn-circle text-xl absolute font-helvetica font-bold"
                 >
                     {user.name && user.name.toUpperCase()[0]}
                 </Link>

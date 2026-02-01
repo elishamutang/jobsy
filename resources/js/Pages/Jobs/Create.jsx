@@ -218,7 +218,7 @@ export default function CreateJob({ countries }) {
 
                 <button
                     type="submit"
-                    className="btn bg-green-800 font-helvetica tracking-wide text-lg"
+                    className="btn bg-blue-800 font-helvetica tracking-wide text-lg"
                 >
                     Create job
                 </button>
