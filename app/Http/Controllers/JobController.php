@@ -89,8 +89,8 @@ class JobController extends Controller
         });
 
         return Inertia::render('Jobs/Edit', [
-            'job' => $job,
-            'countries' => $countries
-        ]);
+            'job' => $job->load('country'),
+            'countries' => $countries,
+        ])->with('jobId', $job->id);
     }
 }
