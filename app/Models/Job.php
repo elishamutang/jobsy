@@ -19,7 +19,6 @@ class Job extends Model
         'date_applied',
         'closing_date',
         'industry',
-        'location',
         'location_type',
         'current_stage',
         'status',
@@ -42,6 +41,6 @@ class Job extends Model
 
     public function country(): BelongsTo
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(Country::class, 'location', 'id');
     }
 }

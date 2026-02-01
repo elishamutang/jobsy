@@ -32,8 +32,8 @@ class JobController extends Controller
     public function show(Job $job)
     {
         return Inertia::render('Jobs/Show', [
-            'job' => $job,
-        ]);
+            'job' => $job->load('country'),
+        ])->with('jobId', $job->id);
     }
 
     // Render job creation page
@@ -70,5 +70,22 @@ class JobController extends Controller
         // Create job through the currently authenticated user
 
 
+    }
+
+    // Update job
+    public function edit(Job $job)
+    {
+        // Get all countries
+        $countries = Country::all()->toArray();
+
+        // Sort country names in alphabetically.
+        usort($countries, function ($a, $b) {
+            return $a['name'] <=> $b['name'];
+        });
+
+        return Inertia::render('Jobs/Edit', [
+            'job' => $job,
+            'countries' => $countries
+        ]);
     }
 }

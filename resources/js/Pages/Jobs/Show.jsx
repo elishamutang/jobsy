@@ -46,7 +46,7 @@ export default function Show({ job }) {
                         Location
                     </h2>
                     <p className="text-gray-400 font-helvetica">
-                        {job.location}{" "}
+                        {job.country.name}{" "}
                         <span className="font-helvetica text-gray-500">
                             - {job.location_type}
                         </span>
