@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Password;
 
 class AuthController extends Controller
 {
@@ -58,7 +59,7 @@ class AuthController extends Controller
         $userCreds = $request->validate([
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
-            'password' => ['required', 'confirmed', 'max:255']
+            'password' => ['required', 'confirmed', Password::min(6), 'max:255']
         ]);
 
         // Create user in DB
