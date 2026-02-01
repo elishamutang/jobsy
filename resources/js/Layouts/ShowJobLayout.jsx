@@ -1,7 +1,8 @@
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 
 export default function ShowJobLayout({ children }) {
     const currentYear = new Date().getFullYear();
+    const { jobId } = usePage().props;
 
     return (
         <>
@@ -25,9 +26,12 @@ export default function ShowJobLayout({ children }) {
                         </Link>
 
                         {/* Edit Button */}
-                        <button className="self-end md:text-xl md:px-6 btn bg-blue-800">
+                        <Link
+                            href={`/jobs/edit/${jobId}`}
+                            className="self-end md:text-xl md:px-6 btn bg-blue-800"
+                        >
                             Edit
-                        </button>
+                        </Link>
                     </div>
                 </section>
 
