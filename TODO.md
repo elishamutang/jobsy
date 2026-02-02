@@ -1,5 +1,6 @@
 # Immediate
 
+- Add delete job functionality
 - Navigate between jobs in "/jobs/{job}" route.
 - Search feature
 - Filtering and categorization
