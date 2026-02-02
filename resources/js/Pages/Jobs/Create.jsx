@@ -7,8 +7,6 @@ export default function CreateJob({ countries }) {
     // FUTURE: Set location to user's location.
     // const [locationFlag, setLocationFlag] = useState();
 
-    console.log(countries);
-
     return (
         <>
             <Form
@@ -139,7 +137,7 @@ export default function CreateJob({ countries }) {
                         </span>
                     </h1>
                     <select
-                        name="locationType"
+                        name="location_type"
                         className="select my-2 w-full"
                         defaultValue="On-site"
                     >
@@ -147,9 +145,9 @@ export default function CreateJob({ countries }) {
                         <option value="Hybrid">Hybrid</option>
                         <option value="Remote">Remote</option>
                     </select>
-                    {errors.locationType && (
+                    {errors.location_type && (
                         <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
-                            {errors.locationType}
+                            {errors.location_type}
                         </div>
                     )}
                 </div>
@@ -186,13 +184,13 @@ export default function CreateJob({ countries }) {
                         </h1>
                         <input
                             type="date"
-                            name="dateApplied"
+                            name="date_applied"
                             className="input my-2 py-5 text-md w-full"
                             required
                         />
-                        {errors.dateApplied && (
+                        {errors.date_applied && (
                             <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
-                                {errors.dateApplied}
+                                {errors.date_applied}
                             </div>
                         )}
                     </div>
@@ -204,13 +202,13 @@ export default function CreateJob({ countries }) {
                         </h1>
                         <input
                             type="date"
-                            name="closingDate"
+                            name="closing_date"
                             className="input my-2 py-5 text-md w-full"
                             required
                         />
-                        {errors.closingDate && (
+                        {errors.closing_date && (
                             <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
-                                {errors.closingDate}
+                                {errors.closing_date}
                             </div>
                         )}
                     </div>

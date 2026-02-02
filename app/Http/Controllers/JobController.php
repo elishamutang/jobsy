@@ -65,16 +65,20 @@ class JobController extends Controller
             'company' => ['required', 'string', 'max:255'],
             'industry' => ['required', 'string', 'max:255'],
             'location' => ['required', 'integer', 'max:255'],
-            'locationType' => ['max:255', Rule::enum(JobLocationType::class)],
+            'location_type' => ['max:255', Rule::enum(JobLocationType::class)],
             'status' => ['required', 'max:255', Rule::enum(JobStatus::class)],
-            'dateApplied' => ['required', 'date'],
-            'closingDate' => ['required', 'date', 'after_or_equal:dateApplied'],
+            'date_applied' => ['required', 'date'],
+            'closing_date' => ['required', 'date', 'after_or_equal:dateApplied'],
             'type' => ['required', Rule::enum(JobType::class)]
         ]);
 
         // Create job through the currently authenticated user
+        $user = $request->user();
+        $job = $user->jobs()->create($validated);
 
-
+        return to_route('jobs.show', [
+            'job' => $job->load('country'),
+        ])->with('success', 'Job created!');
     }
 
     // Render edit page

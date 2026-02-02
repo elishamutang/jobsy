@@ -1,12 +1,24 @@
 import { Link, usePage } from "@inertiajs/react";
+import toast, { Toaster } from "react-hot-toast";
+import { useEffect } from "react";
 
 export default function ShowJobLayout({ children }) {
     const currentYear = new Date().getFullYear();
-    const { jobId } = usePage().props;
+    const { jobId, success } = usePage().props;
+
+    useEffect(() => {
+        if (success?.message) {
+            console.log(success.message);
+            toast.success(success.message);
+        }
+    }, [success]);
 
     return (
         <>
             <main className="mx-auto my-3 flex justify-center flex-col items-center md:w-1/2 md:border rounded-md p-5">
+                {/* Toast messages */}
+                <Toaster />
+
                 <section className="self-start flex justify-between items-center w-full">
                     <h1 className="text-2xl md:text-6xl font-bold font-helvetica tracking-tight">
                         <Link href="/jobs">

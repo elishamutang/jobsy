@@ -7,7 +7,7 @@ export default function Show({ job }) {
                 <div className="flex">
                     {/* Job title */}
                     <div className="flex flex-col w-full justify-between">
-                        <h1 className="font-semibold w-3/4 font-helvetica text-3xl">
+                        <h1 className="font-semibold w-3/4 font-helvetica text-2xl">
                             {job.title}
                         </h1>
 
