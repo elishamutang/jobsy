@@ -1,6 +1,8 @@
-import { Form, Link } from "@inertiajs/react";
+import { Form, Link, usePage } from "@inertiajs/react";
 
 export default function Login() {
+    const { errors } = usePage().props;
+
     return (
         <>
             {/* Login form */}
@@ -18,6 +20,11 @@ export default function Login() {
                         id="email"
                         className="input w-full mt-2 mb-3"
                     />
+                    {errors.email && (
+                        <div className="w-full tracking-wide text-sm font-helvetica text-red-500 mb-2">
+                            {errors.email}
+                        </div>
+                    )}
 
                     {/* User password */}
                     <label htmlFor="password">Password</label>
