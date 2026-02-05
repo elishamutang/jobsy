@@ -22,12 +22,12 @@ class DatabaseSeeder extends Seeder
             'password' => 1234,
         ]);
 
-        // Create 20 random jobs for the above user
-        Job::factory(20)->for($user)->create();
-
-        // Call additional seeder files
+        // Seed countries first
         $this->call([
             CountrySeeder::class,
         ]);
+
+        // Create 20 random jobs for the above user
+        Job::factory(20)->for($user)->create();
     }
 }
