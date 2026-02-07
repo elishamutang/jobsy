@@ -30,6 +30,6 @@ class EmailVerificationTest extends TestCase
 
         // Assert
         $response->assertStatus(302);
-        $response->assertRedirectToRoute('verification.notice');
+        $response->assertRedirect('/email/verify');
     }
 }
