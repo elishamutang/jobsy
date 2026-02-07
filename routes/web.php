@@ -44,7 +44,7 @@ Route::prefix('jobs')->middleware(['auth', 'verified'])->group(function () {
 });
 
 // User profile
-Route::prefix('profile')->group(function () {
+Route::prefix('profile')->middleware(['auth', 'verified'])->group(function () {
     Route::post('/', [ProfileController::class, 'update']);
     Route::get('/', [ProfileController::class, 'index']);
-})->middleware(['auth', 'verified']);
+});
