@@ -45,6 +45,7 @@ Route::prefix('jobs')->middleware(['auth', 'verified'])->group(function () {
 
 // User profile
 Route::prefix('profile')->middleware(['auth', 'verified'])->group(function () {
+    Route::delete('/', [ProfileController::class, 'destroy']);
     Route::put('/', [ProfileController::class, 'update']);
     Route::get('/', [ProfileController::class, 'index']);
 });

@@ -45,4 +45,16 @@ class ProfileController extends Controller
     }
 
     // Delete user profile
+    public function destroy(Request $request)
+    {
+        // Get currently authenticated user
+        $user = Auth::user();
+
+        // Remove session and delete user
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        $user->delete();
+
+        return to_route('index');
+    }
 }
