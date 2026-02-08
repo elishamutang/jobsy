@@ -25,7 +25,7 @@ class ProfileController extends Controller
     {
         $validated = $request->validate([
             'name' => ['string', 'max:255'],
-            'email' => ['required', 'email', Rule::unique('users')->ignore(Auth::user()->id)],
+            'email' => ['email', Rule::unique('users')->ignore(Auth::user()->id)],
             'password' => ['nullable', 'confirmed', Password::min(6), 'max:255']
         ]);
 
