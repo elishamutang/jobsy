@@ -87,4 +87,23 @@ class ProfileControllerTest extends TestCase
     /**
      * Authenticated users can delete their own profile.
      */
+    public function test_authenticated_users_can_delete_their_own_profile(): void
+    {
+        // Arrange
+        $user = User::factory()->create([
+            'email' => 'user@example.com',
+        ]);
+
+        // Act
+        $this->actingAs($user);
+        $response = $this->delete('/profile');
+
+        // Assert
+        $response->assertStatus(302);
+        $response->assertRedirect('/');
+
+        $this->assertDatabaseMissing('users', [
+            'email' => $user->email,
+        ]);
+    }
 }
