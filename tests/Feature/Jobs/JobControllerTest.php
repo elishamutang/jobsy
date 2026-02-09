@@ -110,4 +110,31 @@ class JobControllerTest extends TestCase
             'title' => 'Real job',
         ]);
     }
+
+    /**
+     * Verified and authenticated users can delete their own jobs.
+     */
+    public function test_verified_and_authenticated_users_can_delete_their_own_jobs(): void
+    {
+        // Arrange
+        $user = User::factory()->create();
+        $this->seed(CountrySeeder::class);
+
+        $job = Job::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $jobId = $job->id;
+
+        // Act
+        $this->actingAs($user);
+        $response = $this->delete("/jobs/$jobId");
+
+        // Assert
+        $response->assertStatus(302);
+        $response->assertRedirect("/jobs");
+        $response->assertSessionHas([
+            'success' => 'Job deleted!',
+        ]);
+    }
 }
