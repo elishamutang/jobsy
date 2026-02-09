@@ -1,7 +1,10 @@
+import { useState } from "react";
 import Actions from "../Components/Actions";
 import { Link } from "@inertiajs/react";
 
 export default function Home({ jobs }) {
+    const [imageLoaded, setImageLoaded] = useState(false);
+
     console.log(jobs);
     return (
         <>
@@ -45,7 +48,12 @@ export default function Home({ jobs }) {
                                     {item.title}
                                 </span>
                                 <div className="w-10">
+                                    {!imageLoaded && (
+                                        <div className="w-full h-full bg-gray-200 animate-pulse rounded" />
+                                    )}
+
                                     <img
+                                        onLoad={() => setImageLoaded(true)}
                                         className={`w-full ${item.status !== "Rejected" && item.status !== "Ghosted" ? "" : "opacity-25"}`}
                                         src={item.country.flag}
                                         alt={`${item.name} flag`}
