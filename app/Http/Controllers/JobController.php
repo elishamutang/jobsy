@@ -9,14 +9,17 @@ use App\Models\Country;
 use App\Models\Job;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class JobController extends Controller
 {
-    // Return all jobs
+    // Return all jobs belonging to the currently authenticated user.
     public function index()
     {
-        $jobs = Job::with('country')->latest()->paginate(10);
+        // Get currently authenticated user and associated jobs.
+        $user = Auth::user();
+        $jobs = $user->jobs()->with('country')->latest()->paginate(10);
 
         // Modify the "Previous" and "Next" button text
         $paginatedData = $jobs->toArray();

@@ -15,6 +15,7 @@ export default function ProfileIcon({ user, showLogout }) {
             {showLogout && (
                 <Link
                     href="/logout"
+                    method="post"
                     className="self-end bg-red-900 border-red-900 rounded-lg btn text-xl absolute font-helvetica font-bold px-3"
                 >
                     <svg

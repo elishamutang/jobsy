@@ -111,8 +111,7 @@ export default function Profile({ user }) {
                         Danger Zone
                     </h1>
 
-                    {/* TODO(elishamutang): Add action and method properties */}
-                    <Form className="flex flex-col gap-2 border border-red-500 bg-red-900 p-2 rounded-md">
+                    <Form action="/profile" method="delete" className="flex flex-col gap-2 border border-red-500 bg-red-900 p-2 rounded-md">
                         <div className="flex flex-col gap-1 mb-2">
                             <h2 className="font-helvetica font-semibold">
                                 Delete your profile profile

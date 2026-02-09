@@ -16,18 +16,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::factory([
+        User::factory()->create([
             'name' => 'Elisha',
             'email' => 'elishamutang@outlook.com',
             'password' => 1234,
         ]);
 
-        // Create 20 random jobs for the above user
-        Job::factory(20)->for($user)->create();
-
-        // Call additional seeder files
+        // Run additional seeders
         $this->call([
             CountrySeeder::class,
+            JobSeeder::class,
         ]);
     }
 }

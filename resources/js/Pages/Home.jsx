@@ -25,6 +25,8 @@ export default function Home({ jobs }) {
 
             {/* List of jobs */}
             <section className="m-5 w-full h-full flex flex-col gap-3">
+                {jobs.data.length === 0 && <p className="self-center font-helvetica font-semibold">No jobs yet :)</p>}
+
                 {jobs.data.map((item, index) => {
                     return (
                         <Link
@@ -40,7 +42,7 @@ export default function Home({ jobs }) {
                                 </span>
                                 <div className="w-10">
                                     <img
-                                        className="w-full"
+                                        className={`w-full ${item.status !== "Rejected" && item.status !== "Ghosted" ? "" : "opacity-25"}`}
                                         src={item.country.flag}
                                         alt={`${item.name} flag`}
                                     />
