@@ -37,6 +37,7 @@ Route::prefix('jobs')->middleware(['auth', 'verified'])->group(function () {
     Route::put('/edit/{job}', [JobController::class, 'update']);
     Route::get('/create', [JobController::class, 'create']);
     Route::post('/create', [JobController::class, 'store']);
+    Route::delete('/{job}', [JobController::class, 'destroy']);
     Route::get('/{job}', [JobController::class, 'show'])->name('jobs.show');
 
     // Authenticated home page
