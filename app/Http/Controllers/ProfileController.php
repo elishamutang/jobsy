@@ -47,7 +47,17 @@ class ProfileController extends Controller
     // Delete user profile
     public function destroy(Request $request)
     {
-        // Get currently authenticated user
+        // Validate request
+        $request->validate(
+            [
+                'confirm_email' => ['required', 'email', Rule::in([auth()->user()->email])]
+            ],
+            [
+                'confirm_email.in' => 'The email must match your account email.',
+            ]
+        );
+
+        // Get authenticated user
         $user = Auth::user();
 
         // Remove session and delete user

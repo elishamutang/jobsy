@@ -1,7 +1,10 @@
 import { Form, usePage, Link } from "@inertiajs/react";
+import { useState } from "react";
 
 export default function Profile({ user }) {
     const { errors } = usePage().props;
+
+    const [deleteForm, setDeleteForm] = useState(false);
 
     console.log(user);
     return (
@@ -110,12 +113,13 @@ export default function Profile({ user }) {
                     <h1 className="font-helvetica text-2xl font-bold mb-1 tracking-wide">
                         Danger Zone
                     </h1>
+                    {errors.confirm_email && (
+                        <div className="w-full tracking-wide text-sm font-helvetica text-red-500 mb-2">
+                            {errors.confirm_email}
+                        </div>
+                    )}
 
-                    <Form
-                        action="/profile"
-                        method="delete"
-                        className="flex flex-col gap-2 border border-red-500 bg-red-800 dark:bg-red-900 p-2 rounded-md"
-                    >
+                    <div className="flex flex-col gap-2 border border-red-500 bg-red-900 dark:bg-red-900 p-2 rounded-md">
                         <div className="flex flex-col gap-1 mb-2">
                             <h2 className="font-helvetica font-semibold text-white">
                                 Delete your profile profile
@@ -126,13 +130,39 @@ export default function Profile({ user }) {
                             </p>
                         </div>
 
-                        <button
-                            type="submit"
-                            className="btn bg-red-500 border-0 font-helvetica tracking-wide text-lg text-white"
-                        >
-                            Delete
-                        </button>
-                    </Form>
+                        {!deleteForm && (
+                            <button
+                                onClick={() => setDeleteForm(true)}
+                                type="button"
+                                className="btn bg-red-500 border-0 font-helvetica tracking-wide text-lg text-white mb-2"
+                            >
+                                Delete
+                            </button>
+                        )}
+
+                        {deleteForm && (
+                            <Form
+                                method="delete"
+                                action="/profile"
+                                className="mb-2 md:flex-row flex flex-col gap-2"
+                            >
+                                <input
+                                    name="confirm_email"
+                                    type="email"
+                                    required
+                                    className="input w-full"
+                                    placeholder="To delete please enter your email."
+                                />
+
+                                <button
+                                    type="submit"
+                                    className="btn bg-red-500 border-0 tracking-wide font-helvetica text-lg"
+                                >
+                                    Delete
+                                </button>
+                            </Form>
+                        )}
+                    </div>
                 </section>
             </section>
         </>
