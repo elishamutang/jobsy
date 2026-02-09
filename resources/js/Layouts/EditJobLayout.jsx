@@ -1,4 +1,4 @@
-import { Link, usePage } from "@inertiajs/react";
+import { Link, usePage, Form } from "@inertiajs/react";
 
 export default function EditJobLayout({ children }) {
     const currentYear = new Date().getFullYear();
@@ -15,13 +15,25 @@ export default function EditJobLayout({ children }) {
                         </Link>
                     </h1>
 
-                    {/* Cancel Button */}
-                    <Link
-                        href={`/jobs/${jobId}`}
-                        className="self-end md:text-xl md:px-6 btn bg-red-800 text-white"
-                    >
-                        Cancel
-                    </Link>
+                    <div className="self-end flex gap-2">
+                        {/* Delete Button */}
+                        <Form method="delete" action={`/jobs/${jobId}`}>
+                            <button
+                                type="submit"
+                                className="md:text-xl md:px-6 btn bg-red-800 text-white"
+                            >
+                                Delete
+                            </button>
+                        </Form>
+
+                        {/* Cancel Button */}
+                        <Link
+                            href={`/jobs/${jobId}`}
+                            className="md:text-xl md:px-6 btn dark:bg-slate-800 dark:text-white text-black"
+                        >
+                            Cancel
+                        </Link>
+                    </div>
                 </section>
 
                 <div className="divider my-1"></div>
