@@ -94,16 +94,20 @@ class ProfileControllerTest extends TestCase
             'email' => 'user@example.com',
         ]);
 
+        $userEmail = $user->email;
+
         // Act
         $this->actingAs($user);
-        $response = $this->delete('/profile');
+        $response = $this->delete("/profile", [
+            'confirm_email' => $userEmail,
+        ]);
 
         // Assert
         $response->assertStatus(302);
         $response->assertRedirect('/');
 
         $this->assertDatabaseMissing('users', [
-            'email' => $user->email,
+            'email' => $userEmail,
         ]);
     }
 }
