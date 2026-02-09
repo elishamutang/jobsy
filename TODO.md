@@ -5,7 +5,6 @@
 - Filtering and categorization
     - New page OR
     - Modal
-- Delete profile modal confirmation
 
 # Future
 1. Analytics
