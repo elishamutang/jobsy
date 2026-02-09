@@ -92,13 +92,13 @@ export default function Profile({ user }) {
                     <div className="flex justify-between gap-4 w-full">
                         <button
                             type="submit"
-                            className="flex-1 btn bg-blue-800 font-helvetica tracking-wide text-lg"
+                            className="flex-1 btn bg-blue-800 font-helvetica tracking-wide text-lg text-white"
                         >
                             Update
                         </button>
                         <Link
                             href="/"
-                            className="flex-1 btn bg-slate-600 font-helvetica tracking-wide text-lg"
+                            className="flex-1 btn dark:bg-slate-600 font-helvetica tracking-wide text-lg dark:text-white"
                         >
                             Cancel
                         </Link>
@@ -111,12 +111,16 @@ export default function Profile({ user }) {
                         Danger Zone
                     </h1>
 
-                    <Form action="/profile" method="delete" className="flex flex-col gap-2 border border-red-500 bg-red-900 p-2 rounded-md">
+                    <Form
+                        action="/profile"
+                        method="delete"
+                        className="flex flex-col gap-2 border border-red-500 bg-red-800 dark:bg-red-900 p-2 rounded-md"
+                    >
                         <div className="flex flex-col gap-1 mb-2">
-                            <h2 className="font-helvetica font-semibold">
+                            <h2 className="font-helvetica font-semibold text-white">
                                 Delete your profile profile
                             </h2>
-                            <p className="text-sm">
+                            <p className="text-sm text-white">
                                 Once you delete your profile, there is no going
                                 back. Please be certain.
                             </p>
@@ -124,7 +128,7 @@ export default function Profile({ user }) {
 
                         <button
                             type="submit"
-                            className="btn bg-red-500 border-0 font-helvetica tracking-wide text-lg"
+                            className="btn bg-red-500 border-0 font-helvetica tracking-wide text-lg text-white"
                         >
                             Delete
                         </button>

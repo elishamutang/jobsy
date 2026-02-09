@@ -19,7 +19,10 @@ export default function Landing() {
 
                     {/* Login or Sign Up buttons */}
                     <div className="w-full flex justify-center">
-                        <Link href="/login" className="btn bg-blue-800 w-1/2">
+                        <Link
+                            href="/login"
+                            className="btn bg-blue-800 w-1/2 text-lg text-white"
+                        >
                             Login
                         </Link>
                     </div>

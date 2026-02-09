@@ -18,7 +18,7 @@ export default function EditJobLayout({ children }) {
                     {/* Cancel Button */}
                     <Link
                         href={`/jobs/${jobId}`}
-                        className="self-end md:text-xl md:px-6 btn bg-red-800"
+                        className="self-end md:text-xl md:px-6 btn bg-red-800 text-white"
                     >
                         Cancel
                     </Link>

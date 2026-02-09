@@ -35,7 +35,7 @@ createInertiaApp({
     },
     // Progress indicator
     progress: {
-        color: "#fff",
+        color: "#165ad8",
         showSpinner: true,
     },
 });

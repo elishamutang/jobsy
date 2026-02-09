@@ -47,16 +47,16 @@ export default function Register() {
                     </div>
                     <button
                         type="submit"
-                        className="btn w-full bg-blue-900 text-lg py-6"
+                        className="btn w-full bg-blue-900 text-lg py-6 text-white"
                     >
-                        Create
+                        Register
                     </button>
                 </Form>
 
                 {/* Back to login page */}
                 <Link
                     href="/login"
-                    className="btn bg-blue-500 font-helvetica font-semibold tracking-wide"
+                    className="btn bg-blue-500 font-helvetica font-semibold tracking-wide text-white"
                 >
                     Already have an account? Login.
                 </Link>

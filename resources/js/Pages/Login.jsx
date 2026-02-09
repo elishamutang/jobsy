@@ -37,7 +37,7 @@ export default function Login() {
                 </div>
                 <button
                     type="submit"
-                    className="btn w-full bg-blue-900 text-lg py-6"
+                    className="btn w-full bg-blue-900 text-lg py-6 text-white"
                 >
                     Login
                 </button>
@@ -45,7 +45,7 @@ export default function Login() {
                 {/* Register new account */}
                 <Link
                     href="/register"
-                    className="btn tracking-wide font-semibold bg-blue-500 w-full mt-4 font-helvetica"
+                    className="btn tracking-wide font-semibold bg-blue-500 w-full mt-4 font-helvetica text-white"
                 >
                     Create new account
                 </Link>

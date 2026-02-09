@@ -32,7 +32,7 @@ export default function ShowJobLayout({ children }) {
                         {/* Add New Job Button */}
                         <Link
                             href="/jobs/create"
-                            className="btn bg-blue-800 md:text-xl md:px-6"
+                            className="btn bg-blue-800 md:text-xl md:px-6 text-white"
                         >
                             New
                         </Link>
@@ -40,7 +40,7 @@ export default function ShowJobLayout({ children }) {
                         {/* Edit Button */}
                         <Link
                             href={`/jobs/edit/${jobId}`}
-                            className="self-end md:text-xl md:px-6 btn bg-slate-700"
+                            className="self-end md:text-xl md:px-6 btn dark:bg-slate-700 text-black dark:text-white"
                         >
                             Edit
                         </Link>

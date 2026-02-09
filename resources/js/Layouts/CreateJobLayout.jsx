@@ -17,7 +17,7 @@ export default function CreateJobLayout({ children }) {
                     {/* Cancel Button */}
                     <Link
                         href="/jobs"
-                        className="self-end md:text-xl md:px-6 btn bg-red-800"
+                        className="self-end md:text-xl md:px-6 btn bg-red-800 text-white"
                     >
                         Cancel
                     </Link>

@@ -214,7 +214,7 @@ export default function EditJob({ job, countries }) {
                 <div className="flex justify-between gap-4 w-full">
                     <button
                         type="submit"
-                        className="flex-1 btn bg-blue-800 font-helvetica tracking-wide text-lg"
+                        className="flex-1 btn bg-blue-800 font-helvetica tracking-wide text-lg text-white"
                     >
                         Update
                     </button>
