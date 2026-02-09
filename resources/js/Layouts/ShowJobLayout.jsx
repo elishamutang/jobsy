@@ -15,7 +15,7 @@ export default function ShowJobLayout({ children }) {
 
     return (
         <>
-            <main className="mx-auto my-3 flex justify-center flex-col items-center md:w-1/2 rounded-md p-5 sm:w-xl md:w-2xl">
+            <main className="mx-auto my-3 flex justify-center flex-col items-center rounded-md p-5 sm:w-xl">
                 {/* Toast messages */}
                 <Toaster />
 

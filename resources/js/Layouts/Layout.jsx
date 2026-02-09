@@ -16,7 +16,7 @@ export default function Layout({ children }) {
 
     return (
         <>
-            <main className="mx-auto mb-3 flex justify-center flex-col items-center w-full sm:w-xl md:w-2xl pt-5 px-5 md:px-10">
+            <main className="mx-auto mb-3 flex justify-center flex-col items-center w-full sm:w-xl pt-5 px-5 md:px-10">
                 {/* Toast messages */}
                 <Toaster />
                 <section className="flex flex-col items-center w-full">
