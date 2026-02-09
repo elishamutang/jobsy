@@ -122,4 +122,17 @@ class JobController extends Controller
 
         return to_route('jobs.show', $job)->with('success', 'Job updated!');
     }
+
+    // Delete job
+    public function destroy(Job $job)
+    {
+        // Get current authenticated user
+        $user = Auth::user();
+
+        // Confirm job created by user
+        $job = $user->jobs()->findOrFail($job->id);
+        $job->delete();
+
+        return to_route('home')->with('success', 'Job deleted!');
+    }
 }
