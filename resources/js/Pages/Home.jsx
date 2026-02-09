@@ -9,7 +9,7 @@ export default function Home({ jobs }) {
             <Actions />
 
             <div className="flex justify-between w-full mt-3">
-                <div className="btn rounded-sm bg-slate-800 py-4 self-end font-helvetica font-semibold tracking-wide text-white">
+                <div className="btn cursor-default rounded-sm bg-slate-800 py-4 self-end font-helvetica font-semibold tracking-wide text-white">
                     Total jobs - {jobs.total}
                 </div>
 
@@ -25,7 +25,11 @@ export default function Home({ jobs }) {
 
             {/* List of jobs */}
             <section className="m-5 w-full h-full flex flex-col gap-3">
-                {jobs.data.length === 0 && <p className="self-center font-helvetica font-semibold">No jobs yet :)</p>}
+                {jobs.data.length === 0 && (
+                    <p className="self-center font-helvetica font-semibold">
+                        No jobs yet :)
+                    </p>
+                )}
 
                 {jobs.data.map((item, index) => {
                     return (
