@@ -6,7 +6,7 @@ export default function EditJobLayout({ children }) {
 
     return (
         <>
-            <main className="mx-auto my-3 flex justify-center flex-col items-center md:w-1/2 md:border rounded-md p-5">
+            <main className="mx-auto my-3 flex justify-center flex-col items-center md:w-1/2 rounded-md p-5 sm:w-xl md:w-2xl ">
                 <section className="self-start flex justify-between items-center w-full">
                     <h1 className="text-2xl md:text-6xl font-bold font-helvetica tracking-tight">
                         <Link href="/jobs">
