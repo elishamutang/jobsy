@@ -26,10 +26,11 @@ class JobFactory extends Factory
             'company' => fake()->company(),
             'date_applied' => fake()->dateTimeThisYear(),
             'closing_date' => fake()->dateTimeThisYear(),
-            'industry' => fake()->randomElement(['services', 'agriculture', 'Retail', 'Manufacturing', 'Construction', 'Government', 'Healthcare', 'Commercial Real Estate', 'Mining', 'Engineering', 'Education', 'Construction']),
+            'industry' => fake()->randomElement(['Services', 'Agriculture', 'Retail', 'Manufacturing', 'Construction', 'Government', 'Healthcare', 'Commercial Real Estate', 'Mining', 'Engineering', 'Education', 'Construction']),
             'location' => $country->id,
             'location_type' => fake()->randomElement(['On-site', 'Hybrid', 'Remote']),
             'status' => fake()->randomElement(['Offer', 'Pending', 'Rejected', 'Ghosted', 'Interview']),
+            'job_level' => rand(1, 6),
         ];
     }
 }
