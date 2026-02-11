@@ -5,8 +5,8 @@ namespace Tests\Feature\Jobs;
 use App\Models\Job;
 use App\Models\User;
 use Database\Seeders\CountrySeeder;
+use Database\Seeders\JobLevelSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class JobControllerTest extends TestCase
@@ -55,6 +55,7 @@ class JobControllerTest extends TestCase
     {
         // Arrange data
         $user = User::factory()->create();
+        $this->seed(JobLevelSeeder::class);
         $this->seed(CountrySeeder::class);
 
         $jobDetails = [
@@ -67,6 +68,7 @@ class JobControllerTest extends TestCase
             'date_applied' => '07/02/2026',
             'closing_date' => '08/02/2026',
             'type' => 'Full-time',
+            'job_level' => '1',
         ];
 
         // Act
@@ -87,6 +89,7 @@ class JobControllerTest extends TestCase
     {
         // Arrange
         $user = User::factory()->create();
+        $this->seed(JobLevelSeeder::class);
         $this->seed(CountrySeeder::class);
 
         $job = Job::factory()->create([
@@ -100,6 +103,8 @@ class JobControllerTest extends TestCase
         $this->actingAs($user);
         $response = $this->put("/jobs/edit/$jobId", [
             'title' => 'Real job',
+            'job_level' => 2,
+
         ]);
 
         // Assert
@@ -118,6 +123,7 @@ class JobControllerTest extends TestCase
     {
         // Arrange
         $user = User::factory()->create();
+        $this->seed(JobLevelSeeder::class);
         $this->seed(CountrySeeder::class);
 
         $job = Job::factory()->create([
@@ -132,7 +138,7 @@ class JobControllerTest extends TestCase
 
         // Assert
         $response->assertStatus(302);
-        $response->assertRedirect("/jobs");
+        $response->assertRedirect('/jobs');
         $response->assertSessionHas([
             'success' => 'Job deleted!',
         ]);
