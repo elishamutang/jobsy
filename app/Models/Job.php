@@ -5,9 +5,10 @@ namespace App\Models;
 use App\Enums\JobLocationType;
 use App\Enums\JobStatus;
 use App\Enums\JobType;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Job extends Model
 {
@@ -24,7 +25,7 @@ class Job extends Model
         'industry',
         'location_type',
         'status',
-        'location'
+        'location',
     ];
 
     protected function casts(): array
@@ -48,5 +49,10 @@ class Job extends Model
     public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class, 'location', 'id');
+    }
+
+    public function level(): HasOne
+    {
+        return $this->hasOne(JobLevel::class);
     }
 }
