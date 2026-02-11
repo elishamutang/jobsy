@@ -53,6 +53,6 @@ class Job extends Model
 
     public function level(): HasOne
     {
-        return $this->hasOne(JobLevel::class);
+        return $this->hasOne(JobLevel::class, 'id', 'job_level');
     }
 }
