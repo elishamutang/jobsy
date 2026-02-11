@@ -7,10 +7,11 @@ use App\Enums\JobStatus;
 use App\Enums\JobType;
 use App\Models\Country;
 use App\Models\Job;
-use Inertia\Inertia;
+use App\Models\JobLevel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Inertia\Inertia;
 
 class JobController extends Controller
 {
@@ -39,7 +40,7 @@ class JobController extends Controller
     public function show(Job $job)
     {
         return Inertia::render('Jobs/Show', [
-            'job' => $job->load('country'),
+            'job' => $job->load(['country', 'level']),
         ])->with('jobId', $job->id);
     }
 
@@ -49,6 +50,9 @@ class JobController extends Controller
         // Get all countries
         $countries = Country::all()->toArray();
 
+        // Get all levels
+        $jobLevels = JobLevel::all()->toArray();
+
         // Sort country names in alphabetically.
         usort($countries, function ($a, $b) {
             return $a['name'] <=> $b['name'];
@@ -56,6 +60,7 @@ class JobController extends Controller
 
         return Inertia::render('Jobs/Create', [
             'countries' => $countries,
+            'jobLevels' => $jobLevels,
         ]);
     }
 
@@ -72,7 +77,8 @@ class JobController extends Controller
             'status' => ['required', 'max:255', Rule::enum(JobStatus::class)],
             'date_applied' => ['required', 'date'],
             'closing_date' => ['required', 'date', 'after_or_equal:dateApplied'],
-            'type' => ['required', Rule::enum(JobType::class)]
+            'type' => ['required', Rule::enum(JobType::class)],
+            'job_level' => ['required', 'integer'],
         ]);
 
         // Create job through the currently authenticated user
@@ -90,14 +96,18 @@ class JobController extends Controller
         // Get all countries
         $countries = Country::all()->toArray();
 
+        // Get all levels
+        $jobLevels = JobLevel::all()->toArray();
+
         // Sort country names in alphabetically.
         usort($countries, function ($a, $b) {
             return $a['name'] <=> $b['name'];
         });
 
         return Inertia::render('Jobs/Edit', [
-            'job' => $job->load('country'),
+            'job' => $job->load(['country', 'level']),
             'countries' => $countries,
+            'jobLevels' => $jobLevels,
         ])->with('jobId', $job->id);
     }
 
@@ -114,7 +124,8 @@ class JobController extends Controller
             'status' => ['string', Rule::enum(JobStatus::class)],
             'dateApplied' => ['date'],
             'closingDate' => ['date', 'after_or_equal:dateApplied'],
-            'type' => ['string', Rule::enum(JobType::class)]
+            'type' => ['string', Rule::enum(JobType::class)],
+            'job_level' => ['integer'],
         ]);
 
         // Update job
