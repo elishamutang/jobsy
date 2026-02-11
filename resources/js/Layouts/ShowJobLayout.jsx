@@ -28,7 +28,7 @@ export default function ShowJobLayout({ children }) {
                     </h1>
 
                     {/* Buttons */}
-                    <div className="flex gap-2">
+                    <div className="flex self-end gap-2">
                         {/* Add New Job Button */}
                         <Link
                             href="/jobs/create"
@@ -46,6 +46,10 @@ export default function ShowJobLayout({ children }) {
                         </Link>
                     </div>
                 </section>
+
+                <div className="self-start text-gray-600 italic text-xs md:text-base">
+                    p.s click Jobsy to go back home.
+                </div>
 
                 <div className="divider my-1"></div>
 
