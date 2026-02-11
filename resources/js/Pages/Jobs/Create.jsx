@@ -1,12 +1,12 @@
 import { Form } from "@inertiajs/react";
 import { usePage } from "@inertiajs/react";
 
-export default function CreateJob({ countries }) {
+export default function CreateJob({ countries, jobLevels }) {
     const { errors } = usePage().props;
 
     // FUTURE: Set location to user's location.
     // const [locationFlag, setLocationFlag] = useState();
-
+    console.log(jobLevels);
     return (
         <>
             <Form
@@ -71,6 +71,32 @@ export default function CreateJob({ countries }) {
                     {errors.industry && (
                         <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
                             {errors.industry}
+                        </div>
+                    )}
+                </div>
+
+                {/* Job Level */}
+                <div>
+                    <h1 className="font-helvetica font-semibold text-2xl">
+                        Level
+                    </h1>
+                    <select
+                        name="job_level"
+                        className="select my-2 w-full"
+                        defaultValue={jobLevels[0].id}
+                        required
+                    >
+                        {jobLevels.map((item, index) => {
+                            return (
+                                <option key={index} value={item.id}>
+                                    {item.title}
+                                </option>
+                            );
+                        })}
+                    </select>
+                    {errors.job_level && (
+                        <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
+                            {errors.job_level}
                         </div>
                     )}
                 </div>

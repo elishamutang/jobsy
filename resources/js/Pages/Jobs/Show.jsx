@@ -40,6 +40,16 @@ export default function Show({ job }) {
                     </p>
                 </div>
 
+                {/* Job Level */}
+                <div>
+                    <h2 className="font-helvetica font-semibold text-2xl">
+                        Level
+                    </h2>
+                    <p className="text-gray-400 font-helvetica">
+                        {job.level.title}
+                    </p>
+                </div>
+
                 {/* Location */}
                 <div>
                     <h2 className="font-helvetica font-semibold text-2xl">
