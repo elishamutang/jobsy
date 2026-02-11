@@ -29,7 +29,6 @@ class JobFactory extends Factory
             'industry' => fake()->randomElement(['services', 'agriculture', 'Retail', 'Manufacturing', 'Construction', 'Government', 'Healthcare', 'Commercial Real Estate', 'Mining', 'Engineering', 'Education', 'Construction']),
             'location' => $country->id,
             'location_type' => fake()->randomElement(['On-site', 'Hybrid', 'Remote']),
-            'current_stage' => fake()->randomElement(['Stage 1', 'Stage 2', 'Stage 3', 'Stage 4']),
             'status' => fake()->randomElement(['Offer', 'Pending', 'Rejected', 'Ghosted', 'Interview']),
         ];
     }

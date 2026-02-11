@@ -23,7 +23,6 @@ class Job extends Model
         'closing_date',
         'industry',
         'location_type',
-        'current_stage',
         'status',
         'location'
     ];
