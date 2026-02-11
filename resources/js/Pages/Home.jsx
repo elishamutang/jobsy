@@ -41,9 +41,9 @@ export default function Home({ jobs }) {
                             className="btn btn-soft w-full text-wrap cursor-pointer"
                             key={index}
                         >
-                            <div className="w-full flex justify-between">
+                            <div className="w-full flex justify-between items-center">
                                 <span
-                                    className={`text-left md:w-full truncate w-4/5 ${item.status !== "Rejected" && item.status !== "Ghosted" ? "" : "line-through text-zinc-500"}`}
+                                    className={`text-left md:w-full truncate w-4/5 md:text-base ${item.status !== "Rejected" && item.status !== "Ghosted" ? "" : "line-through text-zinc-500"}`}
                                 >
                                     {item.title}
                                 </span>
