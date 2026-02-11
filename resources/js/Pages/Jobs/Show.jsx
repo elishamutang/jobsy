@@ -45,12 +45,15 @@ export default function Show({ job }) {
                     <h2 className="font-helvetica font-semibold text-2xl">
                         Location
                     </h2>
-                    <p className="text-gray-400 font-helvetica">
-                        {job.country.name}{" "}
+                    <div className="flex gap-2 items-center text-gray-400 font-helvetica">
+                        <p>{job.country.name} </p>
                         <span className="font-helvetica text-gray-500">
                             - {job.location_type}
                         </span>
-                    </p>
+                        <span className="w-8">
+                            <img src={job.country.flag} className="w-full" />
+                        </span>
+                    </div>
                 </div>
 
                 {/* Status of applied job */}
