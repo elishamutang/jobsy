@@ -5,6 +5,7 @@
 - Filtering and categorization
     - New page OR
     - Modal
+- Integreate AI as a feature to do market research on market salary.
 
 # Future
 1. Analytics
