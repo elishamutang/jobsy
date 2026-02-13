@@ -1,6 +1,6 @@
 import { Form, Link } from "@inertiajs/react";
 
-export default function Register() {
+export default function Register({ countries }) {
     return (
         <>
             {/* Registration form */}
@@ -24,6 +24,28 @@ export default function Register() {
                             id="email"
                             className="input w-full mt-2 mb-3"
                         />
+
+                        {/* User Country */}
+                        <div>
+                            <label htmlFor="country">Country</label>
+                            <select
+                                name="country"
+                                className="select mt-2 mb-3 w-full"
+                                required
+                            >
+                                {countries.map((country) => {
+                                    return (
+                                        <option
+                                            className="country-flag"
+                                            key={country.id}
+                                            value={country.id}
+                                        >
+                                            {country.name}
+                                        </option>
+                                    );
+                                })}
+                            </select>
+                        </div>
 
                         {/* User password */}
                         <label htmlFor="password">Password</label>
