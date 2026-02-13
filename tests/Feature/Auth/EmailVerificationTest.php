@@ -2,10 +2,8 @@
 
 namespace Tests\Feature\Auth;
 
-use App\Models\User;
+use Database\Seeders\CountrySeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class EmailVerificationTest extends TestCase
@@ -17,10 +15,13 @@ class EmailVerificationTest extends TestCase
      */
     public function test_redirect_user_to_email_verification_page_if_email_is_unverified(): void
     {
+        $this->seed(CountrySeeder::class);
+
         // Arrange data
         $user = [
             'name' => 'Example User',
             'email' => 'user@example.com',
+            'country' => 6,
             'password' => 'password',
             'password_confirmation' => 'password',
         ];

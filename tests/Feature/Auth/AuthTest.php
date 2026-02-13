@@ -3,8 +3,8 @@
 namespace Tests\Feature\Auth;
 
 use App\Models\User;
+use Database\Seeders\CountrySeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
@@ -17,10 +17,13 @@ class AuthTest extends TestCase
      */
     public function test_users_can_register(): void
     {
+        $this->seed(CountrySeeder::class);
+
         // Arrange data: Prepare user data
         $userData = [
             'name' => 'Example User',
             'email' => 'user@example.com',
+            'country' => 6,
             'password' => 'password',
             'password_confirmation' => 'password',
         ];
