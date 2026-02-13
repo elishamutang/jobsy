@@ -1,7 +1,7 @@
 import { Form, usePage, Link } from "@inertiajs/react";
 import { useState } from "react";
 
-export default function Profile({ user }) {
+export default function Profile({ user, countries }) {
     const { errors } = usePage().props;
 
     const [deleteForm, setDeleteForm] = useState(false);
@@ -12,7 +12,7 @@ export default function Profile({ user }) {
             <section className="w-full flex flex-col gap-7">
                 <Form
                     action="/profile"
-                    method="post"
+                    method="put"
                     className="inert:opacity-50 inert:pointer-events-none self-start w-full flex flex-col gap-3"
                     disableWhileProcessing
                     resetOnSuccess
@@ -53,6 +53,36 @@ export default function Profile({ user }) {
                         {errors.email && (
                             <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
                                 {errors.email}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* User Country */}
+                    <div>
+                        <h1 className="font-helvetica font-semibold text-2xl">
+                            Country
+                        </h1>
+                        <select
+                            name="country"
+                            className="select my-2 w-full"
+                            defaultValue={user.country.id}
+                            required
+                        >
+                            {countries.map((country) => {
+                                return (
+                                    <option
+                                        className="country-flag"
+                                        key={country.id}
+                                        value={country.id}
+                                    >
+                                        {country.name}
+                                    </option>
+                                );
+                            })}
+                        </select>
+                        {errors.country && (
+                            <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
+                                {errors.country}
                             </div>
                         )}
                     </div>
