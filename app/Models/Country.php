@@ -9,11 +9,16 @@ class Country extends Model
 {
     protected $fillable = [
         'name',
-        'flag'
+        'flag',
     ];
 
     public function jobs(): HasMany
     {
         return $this->hasMany(Job::class);
+    }
+
+    public function users(): HasMany
+    {
+        return $this->hasMany(User::class, 'country', 'id');
     }
 }
