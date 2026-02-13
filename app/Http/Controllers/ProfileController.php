@@ -35,10 +35,10 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $validated = $request->validate([
-            'name' => ['string', 'max:255'],
-            'email' => ['email', Rule::unique('users')->ignore(Auth::user()->id)],
-            'password' => ['nullable', 'confirmed', Password::min(6), 'max:255'],
-            'country' => [],
+            'name' => ['sometimes', 'required', 'string', 'max:255'],
+            'email' => ['sometimes', 'required', 'email', Rule::unique('users')->ignore(Auth::user()->id)],
+            'password' => ['sometimes', 'nullable', 'confirmed', Password::min(6), 'max:255'],
+            'country' => ['sometimes', 'required', 'exists:countries,id'],
         ]);
 
         // Update authenticated user
