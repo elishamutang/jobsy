@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Inertia\Inertia;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\Rules\Password;
+use Inertia\Inertia;
 
 class AuthController extends Controller
 {
@@ -17,22 +18,22 @@ class AuthController extends Controller
         return Inertia::render('Login');
     }
 
-
     // Login method
     public function login(Request $request)
     {
         $userCreds = $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required']
+            'password' => ['required'],
         ]);
 
         if (Auth::attempt($userCreds)) {
             $request->session()->regenerate();
+
             return to_route('home');
         }
 
         return back()->withErrors([
-            'email' => 'User does not match our records.'
+            'email' => 'User does not match our records.',
         ])->onlyInput('email');
     }
 
@@ -50,7 +51,17 @@ class AuthController extends Controller
     // Show registration page
     public function register()
     {
-        return Inertia::render('Register');
+        // Get all countries
+        $countries = Country::all()->toArray();
+
+        // Sort country names in alphabetically.
+        usort($countries, function ($a, $b) {
+            return $a['name'] <=> $b['name'];
+        });
+
+        return Inertia::render('Register', [
+            'countries' => $countries,
+        ]);
     }
 
     // Store new user
@@ -59,7 +70,8 @@ class AuthController extends Controller
         $userCreds = $request->validate([
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
-            'password' => ['required', 'confirmed', Password::min(6), 'max:255']
+            'password' => ['required', 'confirmed', Password::min(6), 'max:255'],
+            'country' => ['required', 'exists:countries,id'],
         ]);
 
         // Create user in DB
