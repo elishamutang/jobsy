@@ -3,8 +3,8 @@
 namespace Tests\Feature\Profile;
 
 use App\Models\User;
+use Database\Seeders\CountrySeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ProfileControllerTest extends TestCase
@@ -62,15 +62,18 @@ class ProfileControllerTest extends TestCase
      */
     public function test_authenticated_users_can_update_their_own_profile(): void
     {
+        $this->seed(CountrySeeder::class);
+
         // Arrange
         $user = User::factory()->create([
             'name' => 'Example User',
+            'country' => 6,
         ]);
 
         // Act
         $this->actingAs($user);
         $response = $this->put('/profile', [
-            'name' => 'John Doe'
+            'name' => 'John Doe',
         ]);
 
         // Assert
@@ -81,6 +84,7 @@ class ProfileControllerTest extends TestCase
 
         $this->assertDatabaseHas('users', [
             'name' => 'John Doe',
+            'country' => 6,
         ]);
     }
 
@@ -98,7 +102,7 @@ class ProfileControllerTest extends TestCase
 
         // Act
         $this->actingAs($user);
-        $response = $this->delete("/profile", [
+        $response = $this->delete('/profile', [
             'confirm_email' => $userEmail,
         ]);
 
