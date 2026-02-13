@@ -2,20 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
-use Inertia\Inertia;
 use Illuminate\Validation\Rules\Password;
+use Inertia\Inertia;
 
 class ProfileController extends Controller
 {
     // Show profile page
     public function index()
     {
+        // Show countries
+        $countries = Country::all()->toArray();
+
+        // Sort country names in alphabetically.
+        usort($countries, function ($a, $b) {
+            return $a['name'] <=> $b['name'];
+        });
+
         return Inertia::render('Profile', [
-            'user' => Auth::user(),
+            'user' => User::with('country')->find(Auth::user()->id),
+            'countries' => $countries,
             'showLogout' => true,
         ]);
     }
@@ -26,7 +37,8 @@ class ProfileController extends Controller
         $validated = $request->validate([
             'name' => ['string', 'max:255'],
             'email' => ['email', Rule::unique('users')->ignore(Auth::user()->id)],
-            'password' => ['nullable', 'confirmed', Password::min(6), 'max:255']
+            'password' => ['nullable', 'confirmed', Password::min(6), 'max:255'],
+            'country' => [],
         ]);
 
         // Update authenticated user
@@ -50,7 +62,7 @@ class ProfileController extends Controller
         // Validate request
         $request->validate(
             [
-                'confirm_email' => ['required', 'email', Rule::in([auth()->user()->email])]
+                'confirm_email' => ['required', 'email', Rule::in([Auth::user()->email])],
             ],
             [
                 'confirm_email.in' => 'The email must match your account email.',
