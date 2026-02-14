@@ -47,10 +47,12 @@ class MarketSalaryResearcher implements Agent, Conversational, HasStructuredOutp
     public function schema(JsonSchema $schema): array
     {
         return [
-            'min_range' => $schema->string()->required(),
-            'max_range' => $schema->string()->required(),
-            'min_local_range' => $schema->string()->required(),
-            'max_local_range' => $schema->string()->required(),
+            'min_range_based_on_position_country' => $schema->string()->required(),
+            'max_range_based_on_position_country' => $schema->string()->required(),
+            'min_range_based_on_user_country' => $schema->string()->required(),
+            'max_range_based_on_user_country' => $schema->string()->required(),
+            'is_company_specific' => $schema->boolean()->required(),
+            'sources' => $schema->array()->required(),
         ];
     }
 }
