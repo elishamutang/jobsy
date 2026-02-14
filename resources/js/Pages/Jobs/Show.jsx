@@ -98,7 +98,7 @@ export default function Show({ job, userCountry }) {
                             </p>
 
                             {/* Salary ranges */}
-                            <div className="flex flex-col gap-2 mb-3">
+                            <div className="flex flex-col gap-2 mb-4">
                                 <div className="flex items-center gap-2">
                                     <span className="w-8">
                                         <img
@@ -146,37 +146,56 @@ export default function Show({ job, userCountry }) {
                                 </div>
                             </div>
 
-                            <div className="dropdown dropdown-right dropdown-end">
+                            <div className="flex gap-2 items-center">
+                                {/* Sources */}
+                                <div className="dropdown dropdown-right dropdown-end">
+                                    <div
+                                        tabIndex={0}
+                                        role="button"
+                                        className="btn btn-sm bg-slate-800 flex gap-1 items-center"
+                                    >
+                                        <p className="font-normal text-slate-400 text-sm">
+                                            Sources
+                                        </p>
+                                        <div className="badge bg-slate-600 font-bold badge-sm">
+                                            {job.salary_range.sources.length}
+                                        </div>
+                                    </div>
+                                    <ul
+                                        tabIndex="-1"
+                                        className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 lg:w-100 p-2 shadow-sm"
+                                    >
+                                        {job.salary_range.sources &&
+                                            job.salary_range.sources.map(
+                                                (source, index) => {
+                                                    return (
+                                                        <li
+                                                            className="mb-2 rounded-lg bg-gray-800"
+                                                            key={index}
+                                                        >
+                                                            <a>{source}</a>
+                                                        </li>
+                                                    );
+                                                },
+                                            )}
+                                    </ul>
+                                </div>
+
+                                {/* Based on company data or not */}
                                 <div
-                                    tabIndex={0}
-                                    role="button"
-                                    className="btn btn-sm bg-slate-800 flex gap-1 items-center"
+                                    className="tooltip tooltip-bottom"
+                                    data-tip={
+                                        job.salary_range.is_company_specific
+                                            ? "Research based on company salary data."
+                                            : "Research based on general salary data."
+                                    }
                                 >
-                                    <p className="font-normal text-slate-400 text-sm">
-                                        Sources
-                                    </p>
-                                    <div className="badge bg-slate-600 font-bold badge-sm">
-                                        {job.salary_range.sources.length}
+                                    <div className="badge bg-gray-800 py-4 rounded-sm font-semibold text-white border-gray-700 cursor-pointer">
+                                        {job.salary_range.is_company_specific
+                                            ? "Company-specific"
+                                            : "General"}
                                     </div>
                                 </div>
-                                <ul
-                                    tabIndex="-1"
-                                    className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 lg:w-100 p-2 shadow-sm"
-                                >
-                                    {job.salary_range.sources &&
-                                        job.salary_range.sources.map(
-                                            (source, index) => {
-                                                return (
-                                                    <li
-                                                        className="mb-2 rounded-lg bg-gray-800"
-                                                        key={index}
-                                                    >
-                                                        <a>{source}</a>
-                                                    </li>
-                                                );
-                                            },
-                                        )}
-                                </ul>
                             </div>
                         </div>
                     </>
