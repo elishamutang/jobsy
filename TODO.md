@@ -5,9 +5,6 @@
 - Filtering and categorization
     - New page OR
     - Modal
-- Integrate AI as a feature to do market research on market salary (use Groq)
-    - Consider caching results for each job after first-time creation.
-- Add FontAwesome for icons.
 
 # Future
 1. Analytics
