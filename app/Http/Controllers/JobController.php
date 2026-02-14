@@ -92,6 +92,8 @@ class JobController extends Controller
 
         // Create job through the currently authenticated user
         $user = $request->user();
+        $user->load('country');
+
         $job = $user->jobs()->create($validated);
         $job->load('country');
 
