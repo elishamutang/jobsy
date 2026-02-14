@@ -84,7 +84,7 @@ class JobController extends Controller
             'location_type' => ['max:255', Rule::enum(JobLocationType::class)],
             'status' => ['required', 'max:255', Rule::enum(JobStatus::class)],
             'date_applied' => ['required', 'date'],
-            'closing_date' => ['required', 'date', 'after_or_equal:dateApplied'],
+            'closing_date' => ['required', 'date', 'after_or_equal:date_applied'],
             'type' => ['required', Rule::enum(JobType::class)],
             'job_level' => ['required', 'integer'],
             'job_link' => ['nullable', 'url'],
