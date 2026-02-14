@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('user_jobs', function (Blueprint $table) {
-            $table->string('job_position_source')->nullable()->default(null);
+            $table->string('job_link')->nullable()->default(null);
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('user_jobs', function (Blueprint $table) {
-            $table->dropColumn('job_position_source');
+            $table->dropColumn('job_link');
         });
     }
 };
