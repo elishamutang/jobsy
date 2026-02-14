@@ -59,4 +59,9 @@ class Job extends Model
     {
         return $this->hasOne(JobLevel::class, 'id', 'job_level');
     }
+
+    public function salaryRange(): HasOne
+    {
+        return $this->hasOne(JobSalaryRange::class);
+    }
 }
