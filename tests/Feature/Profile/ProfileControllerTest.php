@@ -67,7 +67,7 @@ class ProfileControllerTest extends TestCase
         // Arrange
         $user = User::factory()->create([
             'name' => 'Example User',
-            'country' => 6,
+            'country_id' => 6,
         ]);
 
         // Act
@@ -84,7 +84,7 @@ class ProfileControllerTest extends TestCase
 
         $this->assertDatabaseHas('users', [
             'name' => 'John Doe',
-            'country' => 6,
+            'country_id' => 6,
         ]);
     }
 
