@@ -40,20 +40,11 @@ class JobController extends Controller
     // Return a specific job
     public function show(Job $job)
     {
-        // Get user
         $user = Auth::user()->load('country');
 
-        $response = MarketSalaryResearcher::make()
-            ->prompt(
-                "Research the current market salary range for the position of {$job->title} with a level of {$job->level} in {$job->country->name} and 
-                return the minimum and maximum market salary ranges only. Please also include the minimum and maximum salary ranges based on the country of {$user->country->name}. 
-                Please consider the company which is {$job->company} if there is sufficient salary data, else return general figures based on the position's country. 
-                Provide a boolean indicator whether the researched salary ranges are based on company-specific salary data or overall general data, and if it is please list out the sources used for your research."
-            );
-
         return Inertia::render('Jobs/Show', [
-            'job' => $job->load(['country', 'level']),
-            'aiResponse' => $response,
+            'job' => $job->load(['country', 'level', 'salaryRange']),
+            'userCountry' => $user->country->flag,
         ])->with('jobId', $job->id);
     }
 
@@ -66,6 +57,9 @@ class JobController extends Controller
         // Get all levels
         $jobLevels = JobLevel::all()->toArray();
 
+        // Get current user country
+        $userCountry = Auth::user()->load('country');
+
         // Sort country names in alphabetically.
         usort($countries, function ($a, $b) {
             return $a['name'] <=> $b['name'];
@@ -74,6 +68,7 @@ class JobController extends Controller
         return Inertia::render('Jobs/Create', [
             'countries' => $countries,
             'jobLevels' => $jobLevels,
+            'userCountry' => $userCountry->country->id,
         ]);
     }
 
@@ -92,14 +87,34 @@ class JobController extends Controller
             'closing_date' => ['required', 'date', 'after_or_equal:dateApplied'],
             'type' => ['required', Rule::enum(JobType::class)],
             'job_level' => ['required', 'integer'],
+            'job_link' => ['nullable', 'url'],
         ]);
 
         // Create job through the currently authenticated user
         $user = $request->user();
         $job = $user->jobs()->create($validated);
+        $job->load('country');
+
+        // Use AI to research current market salary ranges for the newly-created job entry.
+        $response = MarketSalaryResearcher::make()
+            ->prompt(
+                "Research the current market salary range for the position of {$job->title} with a level of {$job->level} in {$job->country->name} and 
+                return the minimum and maximum market salary ranges only. Please also include the minimum and maximum salary ranges based on the country of {$user->country->name}. 
+                Please consider the company which is {$job->company} if there is sufficient salary data, else return general figures based on the position's country. 
+                Provide a boolean indicator whether the researched salary ranges are based on company-specific salary data or overall general data, and if it is please list out the sources used for your research."
+            );
+
+        $job->salaryRange()->create([
+            'min_based_on_job_country' => $response['min_range_based_on_position_country'],
+            'max_based_on_job_country' => $response['max_range_based_on_position_country'],
+            'min_based_on_user_country' => $response['min_range_based_on_user_country'],
+            'max_based_on_user_country' => $response['max_range_based_on_user_country'],
+            'is_company_specific' => $response['is_company_specific'],
+            'sources' => $response['sources'],
+        ]);
 
         return to_route('jobs.show', [
-            'job' => $job->load('country'),
+            'job' => $job,
         ])->with('success', 'Job created!');
     }
 
@@ -139,6 +154,7 @@ class JobController extends Controller
             'closingDate' => ['date', 'after_or_equal:dateApplied'],
             'type' => ['string', Rule::enum(JobType::class)],
             'job_level' => ['integer'],
+            'job_link' => ['url'],
         ]);
 
         // Update job
