@@ -1,6 +1,7 @@
 import { Link, usePage } from "@inertiajs/react";
 import toast, { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
+import Footer from "../Components/Footer";
 
 export default function ShowJobLayout({ children }) {
     const currentYear = new Date().getFullYear();
@@ -55,9 +56,7 @@ export default function ShowJobLayout({ children }) {
 
                 {children}
 
-                <footer className="font-helvetica tracking-wide text-sm text-zinc-500 mt-6">
-                    &copy; {currentYear} Jobsy - All Rights Reserved
-                </footer>
+                <Footer currentYear={currentYear} />
             </main>
         </>
     );

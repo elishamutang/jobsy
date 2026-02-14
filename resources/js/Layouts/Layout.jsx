@@ -2,6 +2,7 @@ import { Link, usePage } from "@inertiajs/react";
 import ProfileIcon from "../Components/ProfileIcon";
 import toast, { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
+import Footer from "../Components/Footer";
 
 export default function Layout({ children }) {
     const currentYear = new Date().getFullYear();
@@ -38,9 +39,7 @@ export default function Layout({ children }) {
                 </section>
                 {children}
 
-                <footer className="font-helvetica tracking-wide text-sm text-zinc-500 mt-5">
-                    &copy; {currentYear} Jobsy - All Rights Reserved
-                </footer>
+                <Footer currentYear={currentYear} />
             </main>
         </>
     );

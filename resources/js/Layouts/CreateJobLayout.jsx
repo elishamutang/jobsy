@@ -1,4 +1,5 @@
 import { Link } from "@inertiajs/react";
+import Footer from "../Components/Footer";
 
 export default function CreateJobLayout({ children }) {
     const currentYear = new Date().getFullYear();
@@ -27,9 +28,7 @@ export default function CreateJobLayout({ children }) {
 
                 {children}
 
-                <footer className="font-helvetica tracking-wide text-sm text-zinc-500 mt-6">
-                    &copy; {currentYear} Jobsy - All Rights Reserved
-                </footer>
+                <Footer currentYear={currentYear} />
             </main>
         </>
     );
