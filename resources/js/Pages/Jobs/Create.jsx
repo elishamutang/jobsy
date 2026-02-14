@@ -1,12 +1,8 @@
 import { Form } from "@inertiajs/react";
 import { usePage } from "@inertiajs/react";
 
-export default function CreateJob({ countries, jobLevels }) {
+export default function CreateJob({ countries, jobLevels, userCountry }) {
     const { errors } = usePage().props;
-
-    // FUTURE: Set location to user's location.
-    // const [locationFlag, setLocationFlag] = useState();
-    console.log(jobLevels);
     return (
         <>
             <Form
@@ -132,7 +128,7 @@ export default function CreateJob({ countries, jobLevels }) {
                     <select
                         name="location"
                         className="select my-2 w-full"
-                        defaultValue="6"
+                        defaultValue={userCountry}
                         required
                     >
                         {countries.map((country) => {
@@ -197,6 +193,27 @@ export default function CreateJob({ countries, jobLevels }) {
                     {errors.status && (
                         <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
                             {errors.status}
+                        </div>
+                    )}
+                </div>
+
+                {/* Job Position Link */}
+                <div>
+                    <h1 className="font-helvetica font-semibold text-2xl">
+                        Link{" "}
+                        <span className="text-sm font-helvetica text-zinc-500">
+                            optional
+                        </span>
+                    </h1>
+                    <input
+                        type="url"
+                        name="job_link"
+                        className="input my-2 py-5 text-md w-full"
+                        placeholder="e.g https://seek.com.au/name-of-job-position"
+                    />
+                    {errors.job_link && (
+                        <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
+                            {errors.job_link}
                         </div>
                     )}
                 </div>
