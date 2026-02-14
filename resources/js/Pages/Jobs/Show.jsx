@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 export default function Show({ job, aiResponse }) {
     console.log(job);
     console.log(aiResponse);
@@ -107,7 +109,10 @@ export default function Show({ job, aiResponse }) {
                         target="_blank"
                         className="font-helvetica font-semibold text-lg text-gray-400 hover:border-b"
                     >
-                        Link to job posting.
+                        Link to job posting{" "}
+                        <sup>
+                            <FontAwesomeIcon icon="fa-solid fa-up-right-from-square" />
+                        </sup>
                     </a>
                 </div>
 
