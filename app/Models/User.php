@@ -23,7 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-        'country',
+        'country_id',
     ];
 
     /**
@@ -58,6 +58,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function country(): BelongsTo
     {
-        return $this->belongsTo(Country::class, 'country', 'id');
+        return $this->belongsTo(Country::class, 'country_id', 'id');
     }
 }
