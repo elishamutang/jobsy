@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\JobLocationType;
 use App\Enums\JobStatus;
 use App\Enums\JobType;
+use Illuminate\Database\Eloquent\Casts\AsUri;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -27,6 +28,7 @@ class Job extends Model
         'status',
         'location',
         'job_level',
+        'job_link',
     ];
 
     protected function casts(): array
@@ -39,6 +41,7 @@ class Job extends Model
             'type' => JobType::class,
             'status' => JobStatus::class,
             'location_type' => JobLocationType::class,
+            'job_link' => AsUri::class,
         ];
     }
 
