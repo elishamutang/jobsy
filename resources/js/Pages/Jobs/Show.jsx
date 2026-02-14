@@ -1,8 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function Show({ job, aiResponse }) {
+export default function Show({ job, userCountry }) {
     console.log(job);
-    console.log(aiResponse);
     return (
         <>
             <section className="self-start w-full flex flex-col gap-5">
@@ -81,6 +80,108 @@ export default function Show({ job, aiResponse }) {
                     </p>
                 </div>
 
+                {/* Market Salary Range (powered by Groq AI) */}
+                {job.salary_range && (
+                    <>
+                        <div>
+                            <div className="flex items-center gap-2">
+                                <h2 className="font-helvetica font-semibold text-2xl">
+                                    Market Salary Range{" "}
+                                </h2>
+                                <div className="badge bg-blue-800 font-helvetica font-semibold">
+                                    AI
+                                </div>
+                            </div>
+
+                            <p className="mb-3 font-helvetica text-gray-600 text-sm">
+                                powered by Groq AI
+                            </p>
+
+                            {/* Salary ranges */}
+                            <div className="flex flex-col gap-2 mb-3">
+                                <div className="flex items-center gap-2">
+                                    <span className="w-8">
+                                        <img
+                                            src={job.country.flag}
+                                            className="w-full"
+                                        />
+                                    </span>
+                                    <p
+                                        className={`font-helvetica tracking-wide text-gray-400`}
+                                    >
+                                        {
+                                            job.salary_range
+                                                .min_based_on_job_country
+                                        }{" "}
+                                        -{" "}
+                                        {
+                                            job.salary_range
+                                                .max_based_on_job_country
+                                        }
+                                    </p>
+                                </div>
+
+                                <div className="flex items-center gap-2">
+                                    <span className="w-8">
+                                        <img
+                                            src={userCountry}
+                                            className="w-full"
+                                        />
+                                    </span>
+                                    <p
+                                        className={`font-helvetica tracking-wide text-gray-400`}
+                                    >
+                                        Local (
+                                        {
+                                            job.salary_range
+                                                .min_based_on_user_country
+                                        }{" "}
+                                        -{" "}
+                                        {
+                                            job.salary_range
+                                                .max_based_on_user_country
+                                        }
+                                        )
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="dropdown dropdown-right dropdown-end">
+                                <div
+                                    tabIndex={0}
+                                    role="button"
+                                    className="btn btn-sm bg-slate-800 flex gap-1 items-center"
+                                >
+                                    <p className="font-normal text-slate-400 text-sm">
+                                        Sources
+                                    </p>
+                                    <div className="badge bg-slate-600 font-bold badge-sm">
+                                        {job.salary_range.sources.length}
+                                    </div>
+                                </div>
+                                <ul
+                                    tabIndex="-1"
+                                    className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 lg:w-100 p-2 shadow-sm"
+                                >
+                                    {job.salary_range.sources &&
+                                        job.salary_range.sources.map(
+                                            (source, index) => {
+                                                return (
+                                                    <li
+                                                        className="mb-2 rounded-lg bg-gray-800"
+                                                        key={index}
+                                                    >
+                                                        <a>{source}</a>
+                                                    </li>
+                                                );
+                                            },
+                                        )}
+                                </ul>
+                            </div>
+                        </div>
+                    </>
+                )}
+
                 {/* Date applied and closing date */}
                 <div>
                     <h2 className="font-helvetica font-semibold text-2xl">
@@ -103,18 +204,22 @@ export default function Show({ job, aiResponse }) {
                 </div>
 
                 {/* Job Position Link */}
-                <div className="mt-2">
-                    <a
-                        href={job.job_link}
-                        target="_blank"
-                        className="font-helvetica font-semibold text-lg text-gray-400 hover:border-b"
-                    >
-                        Link to job posting{" "}
-                        <sup>
-                            <FontAwesomeIcon icon="fa-solid fa-up-right-from-square" />
-                        </sup>
-                    </a>
-                </div>
+                {job.job_link && (
+                    <>
+                        <div className="mt-2">
+                            <a
+                                href={job.job_link}
+                                target="_blank"
+                                className="font-helvetica font-semibold text-lg text-gray-500 hover:border-b hover:border-blue-500 cursor-pointer"
+                            >
+                                Link to job posting{" "}
+                            </a>
+                            <sup>
+                                <FontAwesomeIcon icon="fa-solid fa-up-right-from-square" />
+                            </sup>
+                        </div>
+                    </>
+                )}
 
                 {/* Last updated */}
                 <div className="mt-5 md:flex-row md:justify-between flex flex-col justify-between w-full items-center">
