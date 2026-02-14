@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Jobs;
 
+use App\Ai\Agents\MarketSalaryResearcher;
 use App\Models\Job;
 use App\Models\User;
 use Database\Seeders\CountrySeeder;
@@ -53,22 +54,34 @@ class JobControllerTest extends TestCase
      */
     public function test_verified_and_authenticated_users_can_create_new_job(): void
     {
-        // Arrange data
-        $user = User::factory()->create();
         $this->seed(JobLevelSeeder::class);
         $this->seed(CountrySeeder::class);
+
+        // Arrange data
+        $user = User::factory()->create([
+            'country_id' => 6,
+        ]);
+
+        MarketSalaryResearcher::fake([
+            'min_range_based_on_position_country' => 50000,
+            'max_range_based_on_position_country' => 80000,
+            'min_range_based_on_user_country' => 45000,
+            'max_range_based_on_user_country' => 75000,
+            'is_company_specific' => false,
+            'sources' => ['Glassdoor', 'Indeed'],
+        ]);
 
         $jobDetails = [
             'title' => 'Fake job',
             'company' => 'Fake company',
             'industry' => 'Fake industry',
-            'location' => '6',
+            'location' => 6,
             'location_type' => 'Hybrid',
             'status' => 'Pending',
             'date_applied' => '07/02/2026',
             'closing_date' => '08/02/2026',
             'type' => 'Full-time',
-            'job_level' => '1',
+            'job_level' => 1,
         ];
 
         // Act
