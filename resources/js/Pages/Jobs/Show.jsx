@@ -1,5 +1,6 @@
-export default function Show({ job }) {
+export default function Show({ job, aiResponse }) {
     console.log(job);
+    console.log(aiResponse);
     return (
         <>
             <section className="self-start w-full flex flex-col gap-5">
@@ -97,6 +98,17 @@ export default function Show({ job }) {
                             </span>
                         </p>
                     </div>
+                </div>
+
+                {/* Job Position Link */}
+                <div className="mt-2">
+                    <a
+                        href={job.job_link}
+                        target="_blank"
+                        className="font-helvetica font-semibold text-lg text-gray-400 hover:border-b"
+                    >
+                        Link to job posting.
+                    </a>
                 </div>
 
                 {/* Last updated */}
