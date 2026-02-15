@@ -9,8 +9,6 @@ class JobSalaryRange extends Model
 {
     protected $fillable = [
         'job_id',
-        'min_based_on_user_country',
-        'max_based_on_user_country',
         'min_based_on_job_country',
         'max_based_on_job_country',
         'is_company_specific',
