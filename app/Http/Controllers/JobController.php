@@ -17,11 +17,28 @@ use Inertia\Inertia;
 class JobController extends Controller
 {
     // Return all jobs belonging to the currently authenticated user.
-    public function index()
+    public function index(Request $request)
     {
         // Get currently authenticated user and associated jobs.
         $user = Auth::user();
-        $jobs = $user->jobs()->with('country')->latest()->paginate(10);
+
+        // Job search feature
+        $search = $request->input('search');
+        $jobs = $user->jobs()
+            ->with(['country', 'level'])
+            ->when($search, function ($query, $search) {
+                $query->where('title', 'like', "%{$search}%")
+                    ->orWhere('type', 'like', "%{$search}%")
+                    ->orWhere('company', 'like', "%{$search}%")
+                    ->orWhere('industry', 'like', "%{$search}%")
+                    ->orWhereHas('country', function ($countryQuery) use ($search) {
+                        $countryQuery->where('name', 'like', "%{$search}%");
+                    });
+
+            })
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
 
         // Modify the "Previous" and "Next" button text
         $paginatedData = $jobs->toArray();
@@ -34,6 +51,10 @@ class JobController extends Controller
         // Get all jobs
         return Inertia::render('Home', [
             'jobs' => $paginatedData,
+            'totalJobs' => count($user->jobs()->get()),
+            'filters' => [
+                'search' => $search,
+            ],
         ]);
     }
 
