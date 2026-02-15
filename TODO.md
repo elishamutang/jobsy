@@ -2,7 +2,6 @@
 
 - Filtering and categorization
     - Use modal from DaisyUI
-- Switch between light and dark mode
 - Offline mode using Service Workers
 - Add feedback form
 - Add user analytics when visiting profile
