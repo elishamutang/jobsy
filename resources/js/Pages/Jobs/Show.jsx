@@ -141,30 +141,6 @@ export default function Show({ job, userCountry }) {
                                         }
                                     </p>
                                 </div>
-
-                                <div className="flex items-center gap-2">
-                                    <span className="w-8">
-                                        <img
-                                            src={userCountry}
-                                            className="w-full"
-                                        />
-                                    </span>
-                                    <p
-                                        className={`font-helvetica tracking-wide text-gray-400`}
-                                    >
-                                        Local (
-                                        {
-                                            job.salary_range
-                                                .min_based_on_user_country
-                                        }{" "}
-                                        -{" "}
-                                        {
-                                            job.salary_range
-                                                .max_based_on_user_country
-                                        }
-                                        )
-                                    </p>
-                                </div>
                             </div>
 
                             <div className="flex gap-2 items-center">
