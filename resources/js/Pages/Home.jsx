@@ -46,7 +46,7 @@ export default function Home({ jobs, filters, totalJobs }) {
 
             <div className="flex justify-between w-full mt-3">
                 <div className="btn cursor-default rounded-sm dark:bg-slate-800 py-4 self-end font-semibold tracking-wide dark:text-white">
-                    {jobs.to} / {totalJobs} jobs
+                    {!jobs.to ? 0 : jobs.to} / {totalJobs} jobs
                 </div>
 
                 {/* Add New Job */}
