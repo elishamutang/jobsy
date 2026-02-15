@@ -32,8 +32,8 @@ export default function Layout({ children }) {
                             <span className="text-blue-600">.</span>
                         </Link>
                     </h1>
-                    <p className="font-helvetica tracking-wide text-center text-zinc-500 mb-3 text-sm w-4/5">
-                        Keep track of the jobs you've applied for. Anywhere,
+                    <p className="font-helvetica tracking-wide text-center text-zinc-500 mb-3 text-sm w-4/5 lg:w-full">
+                        Keep track of the jobs you've applied for - Anywhere,
                         anytime!
                     </p>
                 </section>
