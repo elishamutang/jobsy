@@ -14,7 +14,7 @@ export default function Show({ job }) {
                         </h1>
 
                         {/* Company */}
-                        <p className="font-helvetica text-gray-400">
+                        <p className="font-helvetica text-gray-500 dark:text-gray-400">
                             {/* FUTURE: This can be a link to the company */}
                             at{" "}
                             <span className="hover:border-b cursor-pointer ease-in-out transition-all">
@@ -37,7 +37,7 @@ export default function Show({ job }) {
                     <h2 className="font-helvetica font-semibold text-2xl">
                         Industry
                     </h2>
-                    <p className="text-gray-400 font-helvetica">
+                    <p className="text-gray-500 dark:text-gray-400 font-helvetica">
                         {job.industry}
                     </p>
                 </div>
@@ -47,7 +47,7 @@ export default function Show({ job }) {
                     <h2 className="font-helvetica font-semibold text-2xl">
                         Level
                     </h2>
-                    <p className="text-gray-400 font-helvetica">
+                    <p className="text-gray-500 dark:text-gray-400 font-helvetica">
                         {job.level.title}
                     </p>
                 </div>
@@ -57,13 +57,10 @@ export default function Show({ job }) {
                     <h2 className="font-helvetica font-semibold text-2xl">
                         Location
                     </h2>
-                    <div className="flex gap-2 items-center text-gray-400 font-helvetica">
+                    <div className="flex gap-2 items-center text-gray-500 dark:text-gray-400 font-helvetica">
                         <p>{job.country.name} </p>
                         <span className="font-helvetica text-gray-500">
                             - {job.location_type}
-                        </span>
-                        <span className="w-8">
-                            <img src={job.country.flag} className="w-full" />
                         </span>
                     </div>
                 </div>
@@ -74,7 +71,7 @@ export default function Show({ job }) {
                         Status
                     </h2>
                     <p
-                        className={`font-helvetica tracking-wide text-gray-400 ${job.status === "Offer" ? "text-green-400" : job.status === "Rejected" ? "text-red-500" : job.status === "Pending" ? "text-orange-500" : ""}`}
+                        className={`font-helvetica tracking-wide text-gray-400 ${job.status === "Offer" ? "text-green-500 dark:text-green-400" : job.status === "Rejected" ? "text-red-500" : job.status === "Pending" ? "dark:text-orange-400 text-orange-500" : ""}`}
                     >
                         {job.status}
                     </p>
@@ -109,7 +106,7 @@ export default function Show({ job }) {
                                 <h2 className="font-helvetica font-semibold text-2xl">
                                     Market Salary Range{" "}
                                 </h2>
-                                <div className="badge bg-blue-800 font-helvetica font-semibold">
+                                <div className="badge bg-blue-800 text-white dark:bg-blue-800 font-helvetica font-semibold">
                                     AI
                                 </div>
                             </div>
@@ -124,12 +121,10 @@ export default function Show({ job }) {
                                     <span className="w-8">
                                         <img
                                             src={job.country.flag}
-                                            className="w-full"
+                                            className="w-full border border-gray-400"
                                         />
                                     </span>
-                                    <p
-                                        className={`font-helvetica tracking-wide text-gray-400`}
-                                    >
+                                    <p className="font-helvetica tracking-wide text-gray-500 dark:text-gray-400">
                                         {
                                             job.salary_range
                                                 .min_based_on_job_country
@@ -149,12 +144,12 @@ export default function Show({ job }) {
                                     <div
                                         tabIndex={0}
                                         role="button"
-                                        className="btn btn-sm bg-slate-800 flex gap-1 items-center"
+                                        className="btn btn-sm shadow-sm bg-gray-200 border-gray-300 dark:border-gray-700 dark:bg-slate-800 flex gap-1 items-center"
                                     >
-                                        <p className="font-normal text-slate-400 text-sm">
+                                        <p className="font-normal font-semibold text-gray-500 dark:text-gray-400 text-sm">
                                             Sources
                                         </p>
-                                        <div className="badge bg-slate-600 font-bold badge-sm">
+                                        <div className="ml-1 badge border-gray-400 dark:bg-slate-600 font-bold badge-sm">
                                             {job.salary_range.sources.length}
                                         </div>
                                     </div>
@@ -167,7 +162,7 @@ export default function Show({ job }) {
                                                 (source, index) => {
                                                     return (
                                                         <li
-                                                            className="mb-2 rounded-lg bg-gray-800"
+                                                            className="mb-2 rounded-lg bg-gray-200 dark:bg-gray-800"
                                                             key={index}
                                                         >
                                                             <a>{source}</a>
@@ -187,7 +182,7 @@ export default function Show({ job }) {
                                             : "Research based on general salary data."
                                     }
                                 >
-                                    <div className="badge bg-gray-800 py-4 rounded-sm font-semibold text-white border-gray-900 shadow-sm cursor-pointer">
+                                    <div className="badge bg-gray-200 text-gray-500 border-gray-300 shadow-sm dark:bg-gray-800 dark:border-gray-700 py-4 rounded-sm font-semibold dark:text-gray-400 cursor-pointer">
                                         {job.salary_range.is_company_specific
                                             ? "Company-specific"
                                             : "General"}
