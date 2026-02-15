@@ -1,19 +1,52 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Actions from "../Components/Actions";
-import { Link } from "@inertiajs/react";
+import { Link, router, usePage } from "@inertiajs/react";
+import { debounce, pickBy } from "lodash";
 
-export default function Home({ jobs }) {
+export default function Home({ jobs, filters, totalJobs }) {
     const [imageLoaded, setImageLoaded] = useState(false);
+    const [search, setSearch] = useState(filters.search ?? "");
+
+    const { url } = usePage();
+
+    // Debounce search
+    const reload = useCallback(
+        debounce((value) => {
+            const urlObj = new URL(url, window.location.origin);
+
+            if (value) {
+                urlObj.searchParams.set("search", value);
+                urlObj.searchParams.set("page", 1);
+            } else {
+                urlObj.searchParams.delete("search");
+            }
+
+            router.get(
+                urlObj.pathname + urlObj.search,
+                pickBy({ search: value }),
+                {
+                    preserveState: true,
+                    preserveScroll: true,
+                    replace: true,
+                },
+            );
+        }, 400),
+        [url],
+    );
+
+    useEffect(() => {
+        reload(search);
+    }, [search, reload]);
 
     console.log(jobs);
     return (
         <>
-            {/* TODO(elishamutang): Complete search bar functionality. */}
-            <Actions />
+            {/* Search bar */}
+            <Actions value={search} onChangeHandler={setSearch} />
 
             <div className="flex justify-between w-full mt-3">
-                <div className="btn cursor-default rounded-sm dark:bg-slate-800 py-4 self-end font-helvetica font-semibold tracking-wide dark:text-white">
-                    Total jobs - {jobs.total}
+                <div className="btn cursor-default rounded-sm dark:bg-slate-800 py-4 self-end font-semibold tracking-wide dark:text-white">
+                    {jobs.to} / {totalJobs} jobs
                 </div>
 
                 {/* Add New Job */}
