@@ -80,6 +80,27 @@ export default function Show({ job, userCountry }) {
                     </p>
                 </div>
 
+                {/* Date applied and closing date */}
+                <div>
+                    <h2 className="font-helvetica font-semibold text-2xl">
+                        Dates
+                    </h2>
+                    <div>
+                        <p className="font-helvetica text-gray-500">
+                            You applied on{" "}
+                            <span className="border-b border-b-green-500">
+                                {job.date_applied}
+                            </span>
+                        </p>
+                        <p className="font-helvetica text-gray-500">
+                            This posting closes on{" "}
+                            <span className="border-b border-b border-b-red-500">
+                                {job.closing_date}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+
                 {/* Market Salary Range (powered by Groq AI) */}
                 {job.salary_range && (
                     <>
@@ -190,7 +211,7 @@ export default function Show({ job, userCountry }) {
                                             : "Research based on general salary data."
                                     }
                                 >
-                                    <div className="badge bg-gray-800 py-4 rounded-sm font-semibold text-white border-gray-700 cursor-pointer">
+                                    <div className="badge bg-gray-800 py-4 rounded-sm font-semibold text-white border-gray-900 shadow-sm cursor-pointer">
                                         {job.salary_range.is_company_specific
                                             ? "Company-specific"
                                             : "General"}
@@ -200,27 +221,6 @@ export default function Show({ job, userCountry }) {
                         </div>
                     </>
                 )}
-
-                {/* Date applied and closing date */}
-                <div>
-                    <h2 className="font-helvetica font-semibold text-2xl">
-                        Dates
-                    </h2>
-                    <div>
-                        <p className="font-helvetica text-gray-500">
-                            You applied on{" "}
-                            <span className="border-b border-b-green-500">
-                                {job.date_applied}
-                            </span>
-                        </p>
-                        <p className="font-helvetica text-gray-500">
-                            This posting closes on{" "}
-                            <span className="border-b border-b border-b-red-500">
-                                {job.closing_date}
-                            </span>
-                        </p>
-                    </div>
-                </div>
 
                 {/* Job Position Link */}
                 {job.job_link && (
