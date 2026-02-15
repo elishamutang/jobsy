@@ -101,16 +101,13 @@ class JobController extends Controller
         $response = MarketSalaryResearcher::make()
             ->prompt(
                 "Research the current market salary range for the position of {$job->title} with a level of {$job->level} in {$job->country->name} and 
-                return the minimum and maximum market salary ranges only. Please also include the minimum and maximum salary ranges based on the country of {$user->country->name}. 
-                Please consider the company which is {$job->company} if there is sufficient salary data, else return general figures based on the position's country. 
+                return the minimum and maximum market salary ranges only. Please consider the company which is {$job->company} if there is sufficient salary data, else return general figures based on the position's country. 
                 Provide a boolean indicator whether the researched salary ranges are based on company-specific salary data or overall general data, and if it is please list out the sources used for your research."
             );
 
         $job->salaryRange()->create([
             'min_based_on_job_country' => $response['min_range_based_on_position_country'],
             'max_based_on_job_country' => $response['max_range_based_on_position_country'],
-            'min_based_on_user_country' => $response['min_range_based_on_user_country'],
-            'max_based_on_user_country' => $response['max_range_based_on_user_country'],
             'is_company_specific' => $response['is_company_specific'],
             'sources' => $response['sources'],
         ]);
