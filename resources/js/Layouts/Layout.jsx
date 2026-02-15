@@ -3,6 +3,8 @@ import ProfileIcon from "../Components/ProfileIcon";
 import toast, { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
 import Footer from "../Components/Footer";
+import ThemeProvider from "../Hooks/useTheme";
+import LightOrDarkModeToggle from "../Components/LightOrDarkModeToggle";
 
 export default function Layout({ children }) {
     const currentYear = new Date().getFullYear();
@@ -17,30 +19,36 @@ export default function Layout({ children }) {
 
     return (
         <>
-            <main className="mx-auto mb-3 flex justify-center flex-col items-center w-full sm:w-xl pt-5 px-5 md:px-10">
-                {/* Toast messages */}
-                <Toaster />
-                <section className="flex flex-col items-center w-full">
-                    {/* Profile icon */}
-                    {user.name && (
-                        <ProfileIcon user={user} showLogout={showLogout} />
-                    )}
+            <ThemeProvider>
+                <main className="mx-auto mb-3 flex justify-center flex-col items-center w-full sm:w-xl pt-5 px-5 md:px-10">
+                    {/* Toast messages */}
+                    <Toaster />
+                    <section className="flex flex-col items-center w-full">
+                        {/* Light or Dark Mode button toggle */}
+                        <LightOrDarkModeToggle />
 
-                    <h1 className="text-5xl md:text-6xl font-bold mb-2 font-helvetica tracking-tight">
-                        <Link href="/jobs">
-                            <span className="text-7xl md:text-8xl">J</span>obsy
-                            <span className="text-blue-600">.</span>
-                        </Link>
-                    </h1>
-                    <p className="font-helvetica tracking-wide text-center text-slate-500 mb-3 text-sm w-4/5 lg:w-full">
-                        Keep track of the jobs you've applied for - anywhere,
-                        anytime!
-                    </p>
-                </section>
-                {children}
+                        {/* Profile icon */}
+                        {user.name && (
+                            <ProfileIcon user={user} showLogout={showLogout} />
+                        )}
 
-                <Footer currentYear={currentYear} />
-            </main>
+                        <h1 className="text-5xl md:text-6xl font-bold mb-2 font-helvetica tracking-tight">
+                            <Link href="/jobs">
+                                <span className="text-7xl md:text-8xl">J</span>
+                                obsy
+                                <span className="text-blue-600">.</span>
+                            </Link>
+                        </h1>
+                        <p className="font-helvetica tracking-wide text-center text-slate-500 mb-3 text-sm w-4/5 lg:w-full">
+                            Keep track of the jobs you've applied for -
+                            anywhere, anytime!
+                        </p>
+                    </section>
+                    {children}
+
+                    <Footer currentYear={currentYear} />
+                </main>
+            </ThemeProvider>
         </>
     );
 }
