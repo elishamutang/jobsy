@@ -49,8 +49,6 @@ class MarketSalaryResearcher implements Agent, Conversational, HasStructuredOutp
         return [
             'min_range_based_on_position_country' => $schema->string()->required(),
             'max_range_based_on_position_country' => $schema->string()->required(),
-            'min_range_based_on_user_country' => $schema->string()->required(),
-            'max_range_based_on_user_country' => $schema->string()->required(),
             'is_company_specific' => $schema->boolean()->required(),
             'sources' => $schema->array()->required(),
         ];
