@@ -16,7 +16,7 @@ export default function ProfileIcon({ user, showLogout }) {
                 <Link
                     href="/logout"
                     method="post"
-                    className="self-end bg-red-700 dark:bg-red-900 dark:border-red-900 rounded-md btn text-xl absolute font-helvetica font-bold px-3"
+                    className="self-end bg-red-700 dark:bg-red-900 dark:border-red-900 rounded-lg btn text-xl absolute font-helvetica font-bold px-3"
                 >
                     <svg
                         className="fill-white stroke-1"
