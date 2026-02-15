@@ -1,6 +1,7 @@
 import { Link, usePage, Form } from "@inertiajs/react";
 import Footer from "../Components/Footer";
 import ThemeProvider from "../Hooks/useTheme";
+import LightOrDarkModeToggle from "../Components/LightOrDarkModeToggle";
 
 export default function EditJobLayout({ children }) {
     const currentYear = new Date().getFullYear();
@@ -20,11 +21,14 @@ export default function EditJobLayout({ children }) {
                         </h1>
 
                         <div className="self-end flex gap-2">
+                            {/* Theme toggle button */}
+                            <LightOrDarkModeToggle />
+
                             {/* Delete Button */}
                             <Form method="delete" action={`/jobs/${jobId}`}>
                                 <button
                                     type="submit"
-                                    className="md:text-xl md:px-6 btn bg-red-800 text-white"
+                                    className="md:text-xl md:px-6 btn bg-red-600 text-white"
                                 >
                                     Delete
                                 </button>

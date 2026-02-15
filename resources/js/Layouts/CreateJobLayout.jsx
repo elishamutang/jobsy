@@ -25,7 +25,7 @@ export default function CreateJobLayout({ children }) {
 
                             <Link
                                 href="/jobs"
-                                className="md:text-xl md:px-6 btn bg-red-700 dark:bg-red-800 text-white rounded-lg"
+                                className="md:text-xl md:px-6 btn bg-red-600 dark:bg-red-800 text-white"
                             >
                                 Cancel
                             </Link>
