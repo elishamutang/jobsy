@@ -25,7 +25,7 @@ export default function Layout({ children }) {
                     <Toaster />
                     <section className="flex flex-col items-center w-full">
                         {/* Light or Dark Mode button toggle */}
-                        <LightOrDarkModeToggle />
+                        <LightOrDarkModeToggle className={"absolute"} />
 
                         {/* Profile icon */}
                         {user.name && (

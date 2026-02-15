@@ -1,6 +1,7 @@
 import { Link } from "@inertiajs/react";
 import Footer from "../Components/Footer";
 import ThemeProvider from "../Hooks/useTheme";
+import LightOrDarkModeToggle from "../Components/LightOrDarkModeToggle";
 
 export default function CreateJobLayout({ children }) {
     const currentYear = new Date().getFullYear();
@@ -19,12 +20,16 @@ export default function CreateJobLayout({ children }) {
                         </h1>
 
                         {/* Cancel Button */}
-                        <Link
-                            href="/jobs"
-                            className="self-end md:text-xl md:px-6 btn bg-red-800 text-white"
-                        >
-                            Cancel
-                        </Link>
+                        <div className="flex self-end gap-2 items-center">
+                            <LightOrDarkModeToggle />
+
+                            <Link
+                                href="/jobs"
+                                className="md:text-xl md:px-6 btn bg-red-700 dark:bg-red-800 text-white rounded-lg"
+                            >
+                                Cancel
+                            </Link>
+                        </div>
                     </section>
 
                     <div className="divider my-1"></div>

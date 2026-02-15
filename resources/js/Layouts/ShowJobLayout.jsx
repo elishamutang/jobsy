@@ -3,6 +3,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
 import Footer from "../Components/Footer";
 import ThemeProvider from "../Hooks/useTheme";
+import LightOrDarkModeToggle from "../Components/LightOrDarkModeToggle";
 
 export default function ShowJobLayout({ children }) {
     const currentYear = new Date().getFullYear();
@@ -33,6 +34,9 @@ export default function ShowJobLayout({ children }) {
 
                         {/* Buttons */}
                         <div className="flex self-end gap-2">
+                            {/* Light or dark mode toggle button */}
+                            <LightOrDarkModeToggle />
+
                             {/* Add New Job Button */}
                             <Link
                                 href="/jobs/create"
