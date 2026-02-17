@@ -162,10 +162,12 @@ export default function Show({ job }) {
                                                 (source, index) => {
                                                     return (
                                                         <li
-                                                            className="mb-2 rounded-lg bg-gray-200 dark:bg-gray-800"
+                                                            className="w-full mb-2 rounded-lg bg-gray-200 dark:bg-gray-800"
                                                             key={index}
                                                         >
-                                                            <a>{source}</a>
+                                                            <a className="text-pretty text-ellipsis w-full">
+                                                                {source}
+                                                            </a>
                                                         </li>
                                                     );
                                                 },
