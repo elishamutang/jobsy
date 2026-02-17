@@ -123,7 +123,7 @@ class JobController extends Controller
             ->prompt(
                 "Research the current market salary range for the position of {$job->title} with a level of {$job->level} in {$job->country->name} and 
                 return the minimum and maximum market salary ranges only. Please consider the company which is {$job->company} if there is sufficient salary data, else return general figures based on the position's country. 
-                Provide a boolean indicator whether the researched salary ranges are based on company-specific salary data or overall general data, and if it is please list out the sources used for your research."
+                Provide a boolean indicator whether the researched salary ranges are based on company-specific salary data or overall general data, and also please list out the titles for the sources used in your research."
             );
 
         $job->salaryRange()->create([
