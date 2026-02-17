@@ -33,7 +33,7 @@ export default function ShowJobLayout({ children }) {
                         </h1>
 
                         {/* Buttons */}
-                        <div className="flex self-end gap-2">
+                        <div className="flex items-center self-end gap-2">
                             {/* Light or dark mode toggle button */}
                             <LightOrDarkModeToggle />
 
@@ -55,7 +55,7 @@ export default function ShowJobLayout({ children }) {
                         </div>
                     </section>
 
-                    <div className="self-start text-gray-600 italic text-xs md:text-base">
+                    <div className="mt-2 self-start text-gray-600 italic text-xs md:text-base">
                         p.s click Jobsy to go back home.
                     </div>
 
