@@ -21,7 +21,7 @@ class EmailVerificationTest extends TestCase
         $user = [
             'name' => 'Example User',
             'email' => 'user@example.com',
-            'country' => 6,
+            'country_id' => 6,
             'password' => 'password',
             'password_confirmation' => 'password',
         ];
