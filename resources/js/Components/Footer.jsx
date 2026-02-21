@@ -6,10 +6,10 @@ export default function Footer({ currentYear }) {
             {/* Contact Form */}
             <div className="flex gap-2 items-center mb-2">
                 <Link
-                    href="/contact"
+                    href="/feedback"
                     className="border border-transparent hover:border-b-gray-500 cursor-pointer"
                 >
-                    Contact Form
+                    Feedback Form
                 </Link>
             </div>
 
