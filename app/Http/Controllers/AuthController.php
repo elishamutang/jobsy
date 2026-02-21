@@ -71,7 +71,7 @@ class AuthController extends Controller
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'password' => ['required', 'confirmed', Password::min(6), 'max:255'],
-            'country' => ['required', 'exists:countries,id'],
+            'country_id' => ['required', 'exists:countries,id'],
         ]);
 
         // Create user in DB

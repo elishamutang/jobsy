@@ -27,9 +27,9 @@ export default function Register({ countries }) {
 
                         {/* User Country */}
                         <div>
-                            <label htmlFor="country">Country</label>
+                            <label htmlFor="country_id">Country</label>
                             <select
-                                name="country"
+                                name="country_id"
                                 className="select mt-2 mb-3 w-full"
                                 required
                             >
