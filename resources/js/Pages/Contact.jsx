@@ -59,15 +59,15 @@ export default function Contact() {
                             Your Message
                         </h1>
                         <textarea
-                            type="email"
-                            name="email"
+                            type="text"
+                            name="message"
                             className="textarea my-2 text-md w-full"
                             placeholder="Jobsy is the best job-tracker I've ever used!"
                             required
                         />
-                        {errors.email && (
+                        {errors.message && (
                             <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
-                                {errors.email}
+                                {errors.message}
                             </div>
                         )}
                     </div>
