@@ -9,7 +9,7 @@ export default function Profile({ user, countries }) {
     console.log(user);
     return (
         <>
-            <section className="w-full flex flex-col gap-7">
+            <section className="w-full flex flex-col gap-7 mt-3">
                 <Form
                     action="/profile"
                     method="put"
