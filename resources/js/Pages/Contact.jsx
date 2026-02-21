@@ -22,14 +22,14 @@ export default function Contact() {
                         </h1>
                         <input
                             type="text"
-                            name="name"
+                            name="visitor_name"
                             className="input my-2 py-5 text-md w-full"
                             placeholder="John Doe"
                             required
                         />
-                        {errors.name && (
+                        {errors.visitor_name && (
                             <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
-                                {errors.name}
+                                {errors.visitor_name}
                             </div>
                         )}
                     </div>
@@ -41,14 +41,14 @@ export default function Contact() {
                         </h1>
                         <input
                             type="email"
-                            name="email"
+                            name="visitor_email"
                             className="input my-2 py-5 text-md w-full"
                             placeholder="johndoe@example.com"
                             required
                         />
-                        {errors.email && (
+                        {errors.visitor_email && (
                             <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
-                                {errors.email}
+                                {errors.visitor_email}
                             </div>
                         )}
                     </div>
@@ -60,14 +60,14 @@ export default function Contact() {
                         </h1>
                         <textarea
                             type="text"
-                            name="message"
+                            name="visitor_message"
                             className="textarea my-2 text-md w-full"
                             placeholder="Jobsy is the best job-tracker I've ever used!"
                             required
                         />
-                        {errors.message && (
+                        {errors.visitor_message && (
                             <div className="w-full tracking-wide text-sm font-helvetica text-red-500">
-                                {errors.message}
+                                {errors.visitor_message}
                             </div>
                         )}
                     </div>
