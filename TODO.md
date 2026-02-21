@@ -1,5 +1,6 @@
 # Immediate
 
+- Setup mailer to send feedback to my email.
 - Filtering and categorization
     - Use modal from DaisyUI
 - Offline mode using Service Workers
