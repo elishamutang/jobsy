@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\EmailVerificationController;
+use App\Http\Controllers\FeedbackFormController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\CheckEmailVerified;
@@ -54,5 +54,6 @@ Route::prefix('profile')->middleware(['auth', 'verified'])->group(function () {
 
 // Contact form (protected)
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/contact', [ContactFormController::class, 'index']);
+    Route::get('/feedback', [FeedbackFormController::class, 'index']);
+    Route::post('/feedback', [FeedbackFormController::class, 'store']);
 });
