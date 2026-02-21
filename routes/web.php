@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
@@ -44,9 +45,14 @@ Route::prefix('jobs')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [JobController::class, 'index'])->name('home');
 });
 
-// User profile
+// User profile (protected)
 Route::prefix('profile')->middleware(['auth', 'verified'])->group(function () {
     Route::delete('/', [ProfileController::class, 'destroy']);
     Route::put('/', [ProfileController::class, 'update']);
     Route::get('/', [ProfileController::class, 'index']);
+});
+
+// Contact form (protected)
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/contact', [ContactFormController::class, 'index']);
 });
