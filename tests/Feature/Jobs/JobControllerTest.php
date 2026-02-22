@@ -110,19 +110,20 @@ class JobControllerTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        $jobId = $job->id;
+        $jobId = $job->slug;
 
         // Act
         $this->actingAs($user);
         $response = $this->put("/jobs/edit/$jobId", [
             'title' => 'Real job',
             'job_level' => 2,
-
         ]);
+
+        $job->refresh();
 
         // Assert
         $response->assertStatus(302);
-        $response->assertRedirect("/jobs/$jobId");
+        $response->assertRedirect("/jobs/{$job->slug}");
 
         $this->assertDatabaseHas('user_jobs', [
             'title' => 'Real job',
@@ -143,7 +144,7 @@ class JobControllerTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        $jobId = $job->id;
+        $jobId = $job->slug;
 
         // Act
         $this->actingAs($user);
