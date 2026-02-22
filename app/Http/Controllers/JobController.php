@@ -66,8 +66,13 @@ class JobController extends Controller
             abort(403);
         }
 
+        // Get list of user jobs and return job index for display.
+        $jobs = auth()->user()->jobs;
+        $jobIdx = $jobs->search(fn ($j) => $j->id === $job->id);
+
         return Inertia::render('Jobs/Show', [
             'job' => $job->load(['country', 'level', 'salaryRange']),
+            'jobIdx' => $jobIdx,
         ]);
 
     }
