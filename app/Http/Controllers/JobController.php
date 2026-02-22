@@ -73,7 +73,7 @@ class JobController extends Controller
         return Inertia::render('Jobs/Show', [
             'job' => $job->load(['country', 'level', 'salaryRange']),
             'jobIdx' => $jobIdx,
-        ]);
+        ])->with('jobId', $job->slug);
 
     }
 
@@ -129,7 +129,7 @@ class JobController extends Controller
         // Use AI to research current market salary ranges for the newly-created job entry.
         $response = MarketSalaryResearcher::make()
             ->prompt(
-                "Research the current market salary range for the position of {$job->title} working {$job->type} with a level of {$job->level} in {$job->country->name} and 
+                "Research the current market salary range for the position of {$job->title} working {$job->type->value} with a level of {$job->level} in {$job->country->name} and 
                 return the minimum and maximum market salary ranges only. Please consider the company which is {$job->company} if there is sufficient salary data, else return general figures based on the position's country. 
                 Provide a boolean indicator whether the researched salary ranges are based on company-specific salary data or overall general data, and also please list out the titles for the sources used in your research."
             );
@@ -164,7 +164,7 @@ class JobController extends Controller
             'job' => $job->load(['country', 'level']),
             'countries' => $countries,
             'jobLevels' => $jobLevels,
-        ])->with('jobId', $job->id);
+        ])->with('jobId', $job->slug);
     }
 
     // Store updated job
