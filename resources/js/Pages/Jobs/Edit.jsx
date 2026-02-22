@@ -7,7 +7,7 @@ export default function EditJob({ job, countries, jobLevels }) {
     return (
         <>
             <Form
-                action={`/jobs/edit/${job.id}`}
+                action={`/jobs/edit/${job.slug}`}
                 method="put"
                 className="inert:opacity-50 inert:pointer-events-none self-start w-full flex flex-col gap-3"
                 disableWhileProcessing
