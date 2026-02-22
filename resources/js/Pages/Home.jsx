@@ -70,7 +70,7 @@ export default function Home({ jobs, filters, totalJobs }) {
                 {jobs.data.map((item, index) => {
                     return (
                         <Link
-                            href={`/jobs/${item.id}`}
+                            href={`/jobs/${item.slug}`}
                             className="btn btn-soft w-full text-wrap cursor-pointer"
                             key={index}
                         >
