@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\FeedbackFormController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\JobOverviewController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\CheckEmailVerified;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 // Protected routes
 Route::prefix('jobs')->middleware(['auth', 'verified'])->group(function () {
+
+    // User analytics
+    Route::get('/overview', [JobOverviewController::class, 'index']);
 
     // Jobs
     Route::get('/edit/{job}', [JobController::class, 'edit']);
