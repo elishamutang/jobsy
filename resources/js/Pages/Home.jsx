@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import Actions from "../Components/Actions";
 import { Link, router, usePage } from "@inertiajs/react";
 import { debounce, pickBy } from "lodash";
+import { ChartBarSquareIcon } from "@heroicons/react/24/solid";
 
 export default function Home({ jobs, filters, totalJobs }) {
     const [imageLoaded, setImageLoaded] = useState(false);
@@ -45,9 +46,19 @@ export default function Home({ jobs, filters, totalJobs }) {
             <Actions value={search} onChangeHandler={setSearch} />
 
             <div className="flex justify-between w-full mt-3">
+                {/* Number of jobs shown */}
                 <div className="btn cursor-default rounded-sm dark:bg-slate-800 py-4 self-end font-semibold tracking-wide dark:text-white">
                     {!jobs.to ? 0 : jobs.to} / {totalJobs} jobs
                 </div>
+
+                {/* Link to analytics */}
+                <Link
+                    href="/jobs/overview"
+                    className="btn px-1 dark:bg-slate-800"
+                    as="button"
+                >
+                    <ChartBarSquareIcon className="py-1 size-10" />
+                </Link>
 
                 {/* Add New Job */}
                 <Link
