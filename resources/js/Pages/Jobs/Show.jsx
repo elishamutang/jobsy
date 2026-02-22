@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function Show({ job }) {
+export default function Show({ job, jobIdx }) {
     console.log(job);
     return (
         <>
@@ -27,7 +27,7 @@ export default function Show({ job }) {
                     {/* Job ID */}
                     <div className="md:border md:border-5 md:px-4 md:rounded-full flex">
                         <p className="font-helvetica text-5xl self-start md:text-3xl md:self-center font-bold">
-                            {job.id}
+                            {jobIdx + 1}
                         </p>
                     </div>
                 </div>
