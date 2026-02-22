@@ -182,7 +182,7 @@ export default function EditJob({ job, countries, jobLevels }) {
                     <select
                         name="status"
                         className="select my-2 w-full"
-                        defaultValue="Pending"
+                        defaultValue={job.status}
                     >
                         <option value="Pending">Pending</option>
                         <option value="Interview">Interview</option>
