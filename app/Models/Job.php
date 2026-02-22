@@ -10,10 +10,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Job extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug;
 
     protected $table = 'user_jobs';
 
@@ -45,6 +47,21 @@ class Job extends Model
         ];
     }
 
+    // Generate slug upon new model creation.
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom(['title', 'company'])
+            ->saveSlugsTo('slug');
+    }
+
+    // Use slug for showing individual Job models.
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+    // Relationships
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
