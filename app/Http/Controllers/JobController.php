@@ -40,9 +40,9 @@ class JobController extends Controller
             ->paginate(10)
             ->withQueryString();
 
-        // Modify the "Previous" and "Next" button text
         $paginatedData = $jobs->toArray();
 
+        // Modify the "Previous" and "Next" button text
         $lastIdx = count($paginatedData['links']) - 1;
 
         $paginatedData['links'][0]['label'] = 'Previous';
@@ -61,12 +61,15 @@ class JobController extends Controller
     // Return a specific job
     public function show(Job $job)
     {
-        $user = Auth::user()->load('country');
+        // Return Forbidden if trying to access jobs that do not belong to the current user.
+        if (! $job->user->is(auth()->user())) {
+            abort(403);
+        }
 
         return Inertia::render('Jobs/Show', [
             'job' => $job->load(['country', 'level', 'salaryRange']),
-            'userCountry' => $user->country->flag,
-        ])->with('jobId', $job->id);
+        ]);
+
     }
 
     // Render job creation page
@@ -121,7 +124,7 @@ class JobController extends Controller
         // Use AI to research current market salary ranges for the newly-created job entry.
         $response = MarketSalaryResearcher::make()
             ->prompt(
-                "Research the current market salary range for the position of {$job->title} with a level of {$job->level} in {$job->country->name} and 
+                "Research the current market salary range for the position of {$job->title} working {$job->type} with a level of {$job->level} in {$job->country->name} and 
                 return the minimum and maximum market salary ranges only. Please consider the company which is {$job->company} if there is sufficient salary data, else return general figures based on the position's country. 
                 Provide a boolean indicator whether the researched salary ranges are based on company-specific salary data or overall general data, and also please list out the titles for the sources used in your research."
             );
