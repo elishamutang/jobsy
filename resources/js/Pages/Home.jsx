@@ -68,12 +68,37 @@ export default function Home({ jobs, filters, totalJobs }) {
                 )}
 
                 {jobs.data.map((item, index) => {
+                    let badgeColor;
+
+                    switch (item.status) {
+                        case "Pending":
+                            badgeColor = "bg-yellow-700";
+                            break;
+                        case "Interview":
+                            badgeColor = "bg-blue-600";
+                            break;
+                        case "Offer":
+                            badgeColor = "bg-green-600";
+                            break;
+                        case "Rejected":
+                            badgeColor = "bg-red-600";
+                            break;
+                        case "Ghosted":
+                            badgeColor = "bg-gray-600";
+                            break;
+                        default:
+                            break;
+                    }
+
                     return (
                         <Link
                             href={`/jobs/${item.slug}`}
-                            className="btn btn-soft w-full text-wrap cursor-pointer"
+                            className={`btn btn-soft w-full text-wrap cursor-pointer indicator`}
                             key={index}
                         >
+                            <span
+                                className={`indicator-item indicator-start badge badge-xs ${badgeColor}`}
+                            ></span>
                             <div className="w-full flex justify-between items-center">
                                 <span
                                     className={`text-left md:w-full truncate w-4/5 md:text-base ${item.status !== "Rejected" && item.status !== "Ghosted" ? "" : "line-through text-zinc-500"}`}
