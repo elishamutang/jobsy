@@ -123,20 +123,22 @@ export default function Home({ jobs, filters, totalJobs }) {
                 })}
 
                 {/* Pagination */}
-                <div className="join self-center mt-5">
-                    {jobs.links.map((item, index) => {
-                        return (
-                            <Link
-                                href={item.url ? item.url : ""}
-                                key={index}
-                                className={`join-item btn ${item.active ? "btn-disabled" : ""}`}
-                                as="button"
-                            >
-                                {item.label}
-                            </Link>
-                        );
-                    })}
-                </div>
+                {search === "" && (
+                    <div className="join self-center mt-5">
+                        {jobs.links.map((item, index) => {
+                            return (
+                                <Link
+                                    href={item.url ? item.url : ""}
+                                    key={index}
+                                    className={`join-item btn ${item.active ? "btn-disabled" : ""}`}
+                                    as="button"
+                                >
+                                    {item.label}
+                                </Link>
+                            );
+                        })}
+                    </div>
+                )}
             </section>
         </>
     );
