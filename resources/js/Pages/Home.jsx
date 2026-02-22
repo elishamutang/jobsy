@@ -72,7 +72,7 @@ export default function Home({ jobs, filters, totalJobs }) {
 
                     switch (item.status) {
                         case "Pending":
-                            badgeColor = "bg-yellow-700";
+                            badgeColor = "bg-yellow-600";
                             break;
                         case "Interview":
                             badgeColor = "bg-blue-600";
